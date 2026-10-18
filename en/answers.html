@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script id="nn-i18n">(function(){var L=["ko","en","zh","ja","uz","ru"],P=["index.html", "1_perceptron.html", "2_activation.html", "3_cost_function.html", "4_normalization.html", "5_lab.html", "6_regions_probability.html", "answers.html"],cur="en",K="nn_lang";
+var path=location.pathname.split("/"),last=path[path.length-1]||"",file="index.html",dir=location.href.split(/[?#]/)[0];dir=dir.slice(0,dir.lastIndexOf("/")+1);
+if(P.indexOf(last)>=0)file=last;else if(P.indexOf(last+".html")>=0)file=last+".html";else if(last&&last.indexOf(".")<0)dir=dir+last+"/";
+var root=cur==="ko"?dir:dir.replace(/[^\/]+\/$/,"");
+function url(l,f){return root+(l==="ko"?"":l+"/")+(f||file)}
+function tail(){return location.search.replace(/[?&]lang=[a-z]+/,"").replace(/^&/,"?")+location.hash}
+function has(u,cb){if(!/^https?:$/.test(location.protocol)){cb(true);return}try{fetch(u,{method:"HEAD",cache:"no-store"}).then(function(r){cb(r.status!==404&&r.status!==410)},function(){cb(true)})}catch(e){cb(true)}}
+function go(l,manual){if(l===cur)return;var u=url(l);has(u,function(ok){if(ok){location.replace(u+tail());return}
+if(manual){var i=url(l,"index.html");has(i,function(ok2){if(ok2)location.replace(i);else{alert("이 언어판 파일을 서버에서 찾지 못했습니다 / Language file not found on the server: "+url(l));var s=document.querySelector(".langsel");if(s)s.value=cur}})}
+else{try{localStorage.removeItem(K)}catch(e){}}})}
+window.nnSetLang=function(l){try{localStorage.setItem(K,l)}catch(e){}go(l,true)};
+var q=(location.search.match(/[?&]lang=([a-z]{2})/)||[])[1],s=null;try{s=localStorage.getItem(K)}catch(e){}
+if(q&&L.indexOf(q)>=0){try{localStorage.setItem(K,q)}catch(e){}go(q,true);return}
+if(s&&L.indexOf(s)>=0){go(s,false);return}
+var n=(navigator.language||"ko").slice(0,2).toLowerCase();if(L.indexOf(n)>=0)go(n,false);})();</script>
+<meta name="description" content="“Neural Networks Learn by Being Wrong”: answers and scoring rubrics for the check questions, sample answers for lab tasks, and lecture scripts">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Answer key for educators · Neural Networks Learn by Being Wrong</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Answer key for educators · Neural Networks Learn by Being Wrong">
+<meta property="og:description" content="“Neural Networks Learn by Being Wrong”: answers and scoring rubrics for the check questions, sample answers for lab tasks, and lecture scripts">
+<meta property="og:image" content="https://adminmrobo.github.io/Neural-net-learns/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="../img/icon.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=STIX+Two+Text:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#12131d;--panel:#1b1d2b;--panel2:#252839;--ink:#f1eff8;--ink-2:#bdbad3;--ink-3:#8f8caa;
+  --line:#383c55;--line-strong:#50556f;--accent:#b39dff;--accent-soft:rgba(179,157,255,.14);--amber:#b39dff;
+  --grid:rgba(255,255,255,.035);--a:#56b4e9;--b:#e69f00;--c3:#2fc49a;--c:#2fc49a;--lede:#d6d3e6;
+  --cp-f:#2a2450;--cp-s:#b39dff;--cp-t:#ece6ff;--ct-f:#153248;--ct-s:#56b4e9;--ct-t:#d6edfb;
+  --cc-f:#3b2a0b;--cc-s:#e69f00;--cc-t:#ffe3aa;--cg-f:#252839;--cg-s:#6f7290;--cg-t:#f1eff8;--ca-f:rgba(47,196,154,.16);--ca-t:#b9f0de;
+  --navbg:rgba(18,19,29,.92);color-scheme:dark;
+  --p:var(--ink);--s:var(--ink-2);
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --math:"STIX Two Text","Times New Roman",serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--paper:#f5f6f8;--panel:#ffffff;--panel2:#eef0f4;--ink:#141a24;--ink-2:#3f4a58;--ink-3:#6b7684;
+  --line:#d9dee5;--line-strong:#aab3bf;--accent:#6a4bd8;--accent-soft:#eeeafd;--amber:#6a4bd8;
+  --grid:rgba(20,26,36,.045);--a:#0072b2;--b:#d55e00;--c3:#009e73;--c:#009e73;--lede:#2d3743;
+  --cp-f:#eeeafd;--cp-s:#6a4bd8;--cp-t:#3a2590;--ct-f:#e3f1fa;--ct-s:#0072b2;--ct-t:#00406a;
+  --cc-f:#fdefd9;--cc-s:#d55e00;--cc-t:#7a3500;--cg-f:#f1f2f4;--cg-s:#8a8f98;--cg-t:#3d434c;--ca-f:#ddf3ec;--ca-t:#00563f;
+  --navbg:rgba(245,246,248,.94);color-scheme:light;}}
+:root[data-theme="light"]{--paper:#f5f6f8;--panel:#ffffff;--panel2:#eef0f4;--ink:#141a24;--ink-2:#3f4a58;--ink-3:#6b7684;
+  --line:#d9dee5;--line-strong:#aab3bf;--accent:#6a4bd8;--accent-soft:#eeeafd;--amber:#6a4bd8;
+  --grid:rgba(20,26,36,.045);--a:#0072b2;--b:#d55e00;--c3:#009e73;--c:#009e73;--lede:#2d3743;
+  --cp-f:#eeeafd;--cp-s:#6a4bd8;--cp-t:#3a2590;--ct-f:#e3f1fa;--ct-s:#0072b2;--ct-t:#00406a;
+  --cc-f:#fdefd9;--cc-s:#d55e00;--cc-t:#7a3500;--cg-f:#f1f2f4;--cg-s:#8a8f98;--cg-t:#3d434c;--ca-f:#ddf3ec;--ca-t:#00563f;
+  --navbg:rgba(245,246,248,.94);color-scheme:light;}
+:root[data-theme="dark"]{--paper:#12131d;--panel:#1b1d2b;--panel2:#252839;--ink:#f1eff8;--ink-2:#bdbad3;--ink-3:#8f8caa;
+  --line:#383c55;--line-strong:#50556f;--accent:#b39dff;--accent-soft:rgba(179,157,255,.14);--amber:#b39dff;
+  --grid:rgba(255,255,255,.035);--a:#56b4e9;--b:#e69f00;--c3:#2fc49a;--c:#2fc49a;--lede:#d6d3e6;
+  --cp-f:#2a2450;--cp-s:#b39dff;--cp-t:#ece6ff;--ct-f:#153248;--ct-s:#56b4e9;--ct-t:#d6edfb;
+  --cc-f:#3b2a0b;--cc-s:#e69f00;--cc-t:#ffe3aa;--cg-f:#252839;--cg-s:#6f7290;--cg-t:#f1eff8;--ca-f:rgba(47,196,154,.16);--ca-t:#b9f0de;
+  --navbg:rgba(18,19,29,.92);color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.78;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(14px,3vw,32px)}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.015em;word-break:keep-all}
+p{word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--accent)}
+nav.top{position:sticky;top:0;z-index:30;background:var(--navbg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav.top .wrap{display:flex;gap:2px;align-items:center;overflow-x:auto;height:54px;scrollbar-width:none}
+nav.top a{white-space:nowrap;color:var(--ink-2);text-decoration:none;font-size:14.5px;padding:6px 11px;border-radius:6px}
+nav.top a:hover{color:var(--ink);background:var(--panel2)}
+nav.top a.on{color:var(--ink);background:var(--panel2);box-shadow:inset 0 -3px 0 var(--accent)}
+nav.top .brand{color:var(--ink);font-weight:700;margin-right:auto;padding-left:0;display:flex;gap:10px;align-items:center}
+nav.top .brand:hover{background:none}
+.mark{width:22px;height:22px;flex:none;display:block}
+header.hero{position:relative;padding:56px 0 40px;overflow:hidden}
+header.hero .wrap{position:relative;z-index:1}
+.hero-bg{position:absolute;right:-40px;top:0;width:min(640px,70vw);height:100%;pointer-events:none;opacity:.5;-webkit-mask-image:radial-gradient(ellipse at 70% 40%,#000 0,transparent 72%);mask-image:radial-gradient(ellipse at 70% 40%,#000 0,transparent 72%)}
+.kicker{color:var(--accent);font-weight:700;font-size:15px;margin-bottom:10px}
+h1{font-size:clamp(32px,5vw,56px);line-height:1.15;max-width:16ch}
+.hero .lede{font-size:18.5px;color:var(--lede);margin:18px 0 0;max-width:60ch}
+.hero .guide{font-size:14px;color:var(--ink-2);margin:12px 0 0;max-width:64ch}
+section.part{padding:56px 0 24px;border-top:1px solid var(--line)}
+.part-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 22px;align-items:center;margin-bottom:26px}
+.part-no{grid-row:span 2;width:64px;height:73px;display:grid;place-items:center;background:var(--panel2);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);font-size:24px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.part-head h2{font-size:clamp(24px,3vw,34px);line-height:1.3}
+.part-head h2 .en{font-weight:400;color:var(--ink-3);font-size:.58em;margin-left:10px;letter-spacing:0;white-space:nowrap}
+.part-head p{grid-column:2;color:var(--ink-2);margin:0;max-width:72ch}
+.part-head .lin{display:inline-block;margin-left:10px;font-size:14px;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:0 8px;font-family:var(--math)}
+.block{margin:36px 0}
+.block>h3{font-size:19px;margin-bottom:12px}
+.lanes{display:grid;grid-template-columns:128px 1fr 128px;gap:0 18px;align-items:center;margin-bottom:12px}
+.lane{display:flex;align-items:stretch;gap:4px}
+.lane a{flex:1 1 0;display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:10px 12px;font-size:14px;min-height:70px;line-height:1.45}
+.lane a:hover{border-color:var(--accent)}
+.lane a b{display:block;font-size:15px;margin-bottom:2px}
+.lane a span{color:var(--ink-2);font-family:var(--math);font-size:14px}
+.lane .ar{align-self:center;color:var(--ink-3);font-size:12px;text-align:center;min-width:52px;line-height:1.3}
+.lane .ar::after{content:"›";display:block;font-size:18px;color:var(--ink-2)}
+.lane-tag{font-size:14px;font-weight:700;color:var(--b);margin:14px 0 6px}
+.lane-tag.b{color:var(--accent)}
+.start{border:1px solid var(--line);border-radius:10px;padding:14px;font-size:15px;text-align:center;background:var(--panel)}
+.end{border:2px solid var(--accent);border-radius:10px;padding:14px;font-size:15px;text-align:center}
+.start span,.end span{font-family:var(--math);color:var(--ink-2);white-space:nowrap}
+.code{font-variant-numeric:tabular-nums;font-size:15px;background:var(--panel2);border-radius:7px;padding:12px 16px;line-height:1.9;overflow-x:auto}
+footer{padding:40px 0 64px;color:var(--ink-2);font-size:14px;border-top:1px solid var(--line);margin-top:40px}
+footer p{margin:0 0 8px;max-width:90ch}
+@media (max-width:900px){.lanes{grid-template-columns:1fr;gap:10px}.lane{flex-direction:column}.lane .ar{min-width:0}.lane .ar::after{content:"⌄";font-size:14px}}
+.btn{background:var(--panel2);border:1px solid var(--line-strong);border-radius:7px;padding:6px 12px;font-size:14px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--ink-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:500}
+.btn.primary:hover{filter:brightness(1.08)}
+.easy{margin:14px 0 0;padding:12px 16px;background:var(--panel2);border-radius:8px;font-size:15px;max-width:none}
+.easy b{color:var(--amber);margin-right:6px}
+.read{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line)}
+.read h5{margin:0 0 10px;font-size:15px;font-weight:600}
+.read ol{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.read li{display:grid;grid-template-columns:230px minmax(0,1fr);gap:4px 16px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line)}
+.read li:first-child{border-top:0}
+.read .f{font-family:var(--math);font-size:17px;color:var(--accent)}
+.read .f sub,.read .f sup{font-size:.62em}
+.read .d{font-size:16px;color:var(--ink);line-height:1.7}
+.read .d sub,.read .d sup{font-size:.7em}
+.read .ex{margin-top:12px;padding:12px 16px;border-left:3px solid var(--amber);background:var(--panel2);border-radius:0 8px 8px 0;font-family:var(--math);font-size:16px;line-height:1.9;overflow-x:auto}
+.read .ex b{font-family:var(--sans);font-size:13px;color:var(--amber);display:block;line-height:1.4;margin-bottom:2px}
+.anim-intro{margin:0 0 12px;color:var(--ink-2);max-width:78ch}
+.anim-stage{border-radius:8px;overflow:hidden;background:var(--panel)}
+.anim-stage canvas{display:block;width:100%}
+.anim-ctl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:12px}
+.anim-cap{margin:12px 0 0;padding:12px 16px;border-left:3px solid var(--accent);background:var(--panel2);border-radius:0 8px 8px 0;font-size:16.5px;min-height:3.2em;line-height:1.65}
+.anim-steps{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none;counter-reset:a}
+.anim-steps li{counter-increment:a;font-size:14px;color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:3px 12px 3px 6px;display:flex;align-items:center;gap:6px;transition:background .2s,color .2s}
+.anim-steps li::before{content:counter(a);display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--panel2);font-size:11px}
+.anim-steps li.on{color:var(--ink);border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+.anim-steps li.on::before{background:var(--accent);color:var(--paper)}
+.anim-steps li{cursor:pointer}.anim-steps li:hover{border-color:var(--accent)}
+@media (max-width:640px){.read li{grid-template-columns:1fr}.read .f{white-space:normal}}
+[hidden]{display:none!important}
+.pc{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:var(--ink-2);flex-wrap:wrap}
+.pc input[type=range]{width:140px}
+.pc output{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);min-width:2.2em}
+.seg-b{font:inherit;font-size:14px;padding:5px 12px;border:1px solid var(--line-strong);background:var(--panel2);color:var(--ink);cursor:pointer;border-radius:0}
+.seg-b:first-of-type{border-radius:7px 0 0 7px}.seg-b:last-of-type{border-radius:0 7px 7px 0;margin-left:-1px}
+.seg-b[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:600}
+.anim-params{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;margin:0 0 12px;padding:10px 14px;border:1px dashed var(--line-strong);border-radius:8px}
+.anim-ctl .sep{width:1px;height:26px;background:var(--line);margin:0 4px}
+.quiz .q{padding:14px 0;border-top:1px solid var(--line)}
+.quiz .q:first-of-type{border-top:0;padding-top:0}
+.quiz .qt{margin:0 0 10px;font-size:16.5px;font-weight:600}
+.quiz .opts{display:flex;flex-wrap:wrap;gap:8px}
+.quiz .opts button{font:inherit;font-size:15px;text-align:left;padding:8px 14px;border-radius:8px;border:1px solid var(--line-strong);background:var(--panel2);color:var(--ink);cursor:pointer}
+.quiz .opts button:hover{border-color:var(--accent)}
+.quiz .opts button.ok{border-color:var(--a);background:var(--ct-f);color:var(--ct-t);font-weight:600}
+.quiz .opts button.no{border-color:var(--b);background:var(--cc-f);color:var(--cc-t);text-decoration:line-through}
+.quiz .fb{margin:10px 0 0;font-size:15.5px;min-height:0}
+.quiz .fb b{margin-right:6px}
+.struct{width:100%;border-collapse:collapse;font-size:15px;margin-top:6px}
+.struct th,.struct td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.struct th{color:var(--ink-2);font-weight:600;font-size:14px}
+.codebox{position:relative;background:var(--panel2);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.codebox pre{margin:0;padding:18px 20px;overflow:auto;max-height:520px;font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,"D2Coding",monospace;font-size:14px;line-height:1.6;color:var(--ink);tab-size:4}
+.codebox .copy{position:absolute;top:10px;right:10px}
+.pick{width:100%;border-collapse:collapse;font-size:15.5px}
+.pick th,.pick td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.pick th{background:var(--panel2);font-size:14px;color:var(--ink-2)}
+.pick td b{white-space:nowrap}
+@media (max-width:640px){.eq{white-space:normal;font-size:20px}.card{padding:18px 16px}.read li{grid-template-columns:1fr}.pc input[type=range]{width:110px}}
+.glossary{margin-top:40px}
+.gl-intro{color:var(--ink-2);max-width:72ch;margin:0 0 18px}
+.gl-group h4{margin:22px 0 10px;font-size:16px;color:var(--accent)}
+.gl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.gl-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;scroll-margin-top:80px}
+.gl-card:target{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.gl-card b{font-size:16.5px;display:block;margin-bottom:6px}
+.gl-card p{margin:6px 0 0;font-size:15px;line-height:1.6}
+.gl-card p span,.tip p span{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:0 6px;margin-right:6px;vertical-align:1px}
+.gl-an span{background:var(--accent);color:var(--paper)}
+.gl-mean span{background:var(--panel2);color:var(--ink-2);border:1px solid var(--line)}
+.gl-mean{color:var(--ink-2)}
+.term,.term-demo{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:help;text-decoration:underline dotted var(--accent);text-decoration-thickness:2px;text-underline-offset:4px;line-height:inherit}
+.term:hover,.term:focus-visible,.term[aria-expanded="true"]{color:var(--accent)}
+.tip{position:fixed;z-index:60;max-width:min(360px,calc(100vw - 24px));background:var(--panel);border:1px solid var(--accent);border-radius:10px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.35);font-size:15px;line-height:1.6}
+.tip b{display:block;font-size:16px;margin-bottom:4px}
+.tip p{margin:6px 0 0}
+.tip .gl-mean{color:var(--ink-2)}
+.tip a{display:inline-block;margin-top:8px;font-size:13px}
+.eq,.problem-eq,.hero-eq{text-align:center}
+.eq .cap{text-align:center;margin-top:4px}
+
+.hero-art{width:100%;height:auto;display:block;margin:0 0 26px;max-width:1100px}
+.fishcard{border:2px solid var(--accent)}
+.fishcard .lbl .no{background:var(--a)}
+.fish-res{margin:10px 0 0;padding:10px 14px;background:var(--panel2);border-radius:8px;font-size:15.5px;line-height:1.6}
+.fish-why{margin:12px 0 0;max-width:76ch;font-size:16px}
+.fishcard canvas{display:block;width:100%;max-width:640px}
+.fish-tbl{width:100%;border-collapse:collapse;font-size:15px}
+.fish-tbl th,.fish-tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+.fish-tbl th{background:var(--panel2);font-size:13.5px;color:var(--ink-2)}
+.fish-tbl td.n{text-align:right;font-variant-numeric:tabular-nums}
+.fish-tbl tr.on td{background:var(--accent-soft);font-weight:700}
+.t3-tbl .fish-tbl th:nth-child(n+2){text-align:right}
+.fish-tbl td.up{color:var(--a);font-weight:700}.fish-tbl td.dn{color:var(--b);font-weight:700}
+svg.fishsvg{width:100%;max-width:560px;display:block;margin:6px 0}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:6px}
+.tile{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--panel)}
+.tile:hover{border-color:var(--accent)}
+.tile.best{border:2px solid var(--accent)}
+.tile canvas{display:block;width:100%;border-radius:6px}
+.tile .tn{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font-size:14px;font-weight:700}
+.tile .tacc{font-variant-numeric:tabular-nums;color:var(--accent)}
+#t3d canvas{display:block;width:100%;max-width:760px;cursor:grab;border-radius:8px;background:var(--panel2)}
+.t3-tbl{margin-top:14px}
+.qfish{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
+.problem-eq{font-family:var(--math);font-size:22px;padding:12px 16px;background:var(--panel2);border-radius:8px;margin:10px 0;overflow-x:auto}
+@media (max-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.qfish{grid-template-columns:1fr}}
+.dlbar{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--panel)}
+.dlbar .btn{font-size:13.5px;padding:5px 11px}
+.codebox .copy{top:auto;bottom:10px}
+.promptbox{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel2)}
+.prompt-pre{margin:0;padding:16px 18px;max-height:460px;overflow:auto;white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,"D2Coding",monospace;font-size:13.5px;line-height:1.65;color:var(--ink)}
+.thanks{padding:56px 0 30px;border-top:1px solid var(--line)}
+.thanks-wrap{display:flex;align-items:flex-end;justify-content:center;gap:28px;flex-wrap:wrap}
+.thanks img{width:min(300px,70vw);height:auto;image-rendering:pixelated;display:block}
+.bubble{position:relative;max-width:420px;background:var(--panel);border:4px solid var(--ink);padding:18px 22px;margin-bottom:120px;box-shadow:8px 8px 0 var(--accent)}
+.bubble::before{content:"";position:absolute;left:-20px;bottom:24px;width:16px;height:16px;background:var(--ink);box-shadow:-8px 8px 0 var(--ink)}
+.bubble .b1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em}.bubble .b2{margin:8px 0 0;font-size:15px;color:var(--ink-2)}
+@media (max-width:700px){.bubble{margin-bottom:0}.bubble::before{display:none}}
+.sp-tbl td{vertical-align:middle}.sp-tbl svg{display:block}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.sdp{border:2px solid var(--line);border-radius:12px;padding:14px}
+.sdp.bad{border-color:var(--b)}.sdp.good{border-color:var(--a)}
+.sdp h5{margin:0 0 8px;font-size:16px}.sdp .tag{display:inline-block;font-size:12.5px;font-weight:700;padding:1px 8px;border-radius:5px;margin-right:6px;color:var(--paper)}
+.sdp.bad .tag{background:var(--b)}.sdp.good .tag{background:var(--a)}
+.sd-row{display:grid;grid-template-columns:64px 1fr;gap:8px;align-items:center;font-size:13.5px;margin:6px 0}
+.cbar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--panel2)}.cbar i{display:block}.cnum{grid-column:2;font-size:12.5px}
+.sd-acc{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+.sdp canvas{display:block;width:100%;border-radius:8px;margin-top:8px}
+@media (max-width:760px){.split2{grid-template-columns:1fr}}
+.note-box{margin:12px 0;padding:12px 16px;border:1px dashed var(--line-strong);border-radius:8px;font-size:15.5px}
+ul.plain{margin:0;padding-left:18px}ul.plain li{margin:0 0 8px}
+.sp-tbl th{white-space:nowrap}
+.note-box a,footer a{overflow-wrap:anywhere;word-break:break-all}.grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px}
+.span{grid-column:1/-1}
+.card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 26px}
+.lbl{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--ink);margin:0 0 14px;letter-spacing:-.005em}
+.lbl .no{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--paper);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.model-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start}
+.model-row p{margin:0;font-size:18px;max-width:60ch;line-height:1.7}
+.facts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.fact{border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:13px;line-height:1.35;min-width:120px}
+.fact span{display:block;color:var(--ink-3);font-size:12px}
+.eq{font-family:var(--math);font-size:23px;line-height:1.6;padding:14px 18px;background:var(--panel2);border-radius:8px;overflow-x:auto;white-space:nowrap}
+.eq + .eq{margin-top:10px}
+.eq .cap{display:block;font-family:var(--sans);font-size:12px;color:var(--ink-3);white-space:normal;line-height:1.4}
+.eq sub,.eq sup{font-size:.62em}
+.sym{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:15px;color:var(--ink-2)}
+.sym dt{font-family:var(--math);color:var(--ink);font-size:16px}
+.sym dd{margin:0}
+.diagram{background-color:var(--panel);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px;border-radius:8px;overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:520px;height:auto}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:10px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+.prose p{margin:0 0 14px;max-width:66ch;font-size:16.5px}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:600}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.feat h5{margin:0 0 8px;font-size:15px;font-weight:700}
+.feat ul{margin:0;padding:0;list-style:none}
+.feat li{position:relative;padding:8px 0 8px 22px;border-top:1px solid var(--line);font-size:16px}
+.feat li:first-child{border-top:0}
+.feat .pro li::before{content:"+";position:absolute;left:2px;color:var(--a);font-weight:600}
+.feat .con li::before{content:"−";position:absolute;left:3px;color:var(--b);font-weight:600}
+.usecase{margin-top:16px;font-size:15px;color:var(--ink-2)}
+svg .t{font-family:var(--sans);font-size:15px;fill:var(--ink)}
+svg .ts{font-family:var(--sans);font-size:13.5px;fill:var(--ink-2)}
+svg .th{font-family:var(--sans);font-size:15px;font-weight:600;fill:var(--ink)}
+svg .box{fill:var(--panel);stroke:var(--line-strong);stroke-width:.8}
+svg .arr{stroke:var(--ink-2);stroke-width:1.3;fill:none}
+svg .c-purple>rect,svg .c-purple>circle{fill:var(--cp-f);stroke:var(--cp-s)}
+svg .c-purple>text{fill:var(--cp-t)}
+svg .c-teal>rect,svg .c-teal>circle{fill:var(--ct-f);stroke:var(--ct-s)}
+svg .c-teal>text{fill:var(--ct-t)}
+svg .c-coral>rect,svg .c-coral>circle{fill:var(--cc-f);stroke:var(--cc-s)}
+svg .c-coral>text{fill:var(--cc-t)}
+svg .c-gray>rect,svg .c-gray>circle{fill:var(--cg-f);stroke:var(--cg-s)}
+svg .c-gray>text{fill:var(--cg-t)}
+.deep{margin-top:48px;padding:32px 0 0;border-top:3px solid var(--accent)}
+.deep>h3{margin:0 0 6px;font-size:24px;font-weight:600;letter-spacing:-.01em}
+.deep>.sub{margin:0 0 22px;color:var(--ink-2);max-width:70ch}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.vs>div{padding:18px 20px}
+.vs>div+div{border-left:1px solid var(--line)}
+.vs h5{margin:0 0 4px;font-size:15px;font-weight:600}
+.vs .eq{font-size:20px;margin:8px 0 12px}
+.vs ul{margin:0;padding-left:18px;font-size:15px}
+.vs li{margin:4px 0}
+.keyline{margin:16px 0 0;padding:14px 18px;border-left:3px solid var(--accent);background:var(--accent-soft);font-size:16px;border-radius:0}
+.lab.stack{grid-template-columns:minmax(0,1fr)}
+.lab.stack .diagram{max-width:640px}
+.lab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.ctl{display:grid;grid-template-columns:72px 1fr 52px;align-items:center;gap:10px;font-size:14px;margin:6px 0}
+.ctl label{font-family:var(--math);font-size:16px}
+.ctl output{font-variant-numeric:tabular-nums;text-align:right}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{position:relative;padding:12px 0 12px 40px;border-top:1px solid var(--line)}
+.steps li:first-child{border-top:0}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:12px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--panel);display:grid;place-items:center;font-size:13px;font-weight:500}
+.steps .what{font-size:13px;color:var(--ink-2);display:block}
+.calc{font-family:var(--math);font-size:18px;line-height:1.7;font-variant-numeric:tabular-nums;overflow-x:auto;white-space:nowrap}
+.calc .hl{color:var(--accent)}
+.calc .pos{color:var(--a)}.calc .neg{color:var(--b)}
+.result{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:6px;font-family:var(--sans);font-size:14px;font-weight:600}
+.result.A{background:var(--ct-f);color:var(--ct-t)}.result.B{background:var(--cc-f);color:var(--cc-t)}.result.C{background:var(--ca-f);color:var(--ca-t)}
+.mat{display:inline-flex;align-items:center;gap:6px;font-family:var(--math);font-size:16px;vertical-align:middle}
+.mat table{border-collapse:collapse;border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);border-radius:3px}
+.mat td{padding:1px 8px;text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:3px}
+.bar i{display:block;height:100%}
+table.cmp{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table.cmp th,table.cmp td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp th{font-weight:600;background:var(--panel2);font-size:13px;color:var(--ink-2)}
+table.cmp td:first-child{font-weight:600;white-space:nowrap}
+table.cmp td.m{font-family:var(--math);font-size:15px;white-space:nowrap}
+.tblwrap{overflow-x:auto}
+.hero-eq{font-family:var(--math);font-size:clamp(30px,5vw,54px);line-height:1.2;margin:8px 0 6px;letter-spacing:-.01em}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px}
+.three .card h5{margin:0 0 6px;font-size:16px;font-weight:600}
+.three .card p{margin:0;font-size:15px;color:var(--ink-2)}
+.three .card .q{font-family:var(--math);font-size:17px;color:var(--ink);margin-bottom:6px}
+.map{margin-top:24px}
+.mlane{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:10px 0 20px}
+.mlane .tag{font-size:13px;color:var(--ink-2);width:100%;margin-bottom:8px}
+.chip{border:1px solid var(--line-strong);background:var(--panel);border-radius:8px;padding:8px 14px;font-size:15px;cursor:pointer;color:var(--ink);text-decoration:none}
+.chip:hover{border-color:var(--accent)}
+.link{display:flex;flex-direction:column;align-items:center;padding:0 6px;font-size:12px;color:var(--accent);line-height:1.2;min-width:74px;text-align:center}
+.link::after{content:"";display:block;width:100%;height:1px;background:var(--accent);margin-top:4px}
+.note{font-size:13px;color:var(--ink-3);margin-top:10px}
+select{border:1px solid var(--line-strong);border-radius:6px;padding:4px 8px;background:var(--panel)}
+@media (max-width:1020px){
+  .part-no{width:48px;height:55px;font-size:18px}
+  .part-head h2 .en{white-space:normal;display:block;margin-left:0}
+  .part-head p{grid-column:1/-1}
+  .grid,.lab,.feat,.vs,.three,.model-row{grid-template-columns:minmax(0,1fr)}
+  .vs>div+div{border-left:0;border-top:1px solid var(--line)}
+  .facts{justify-content:flex-start}
+}
+@media (max-width:560px){nav.top .brand span{display:none}}
+.fish-tbl th{white-space:nowrap}
+@media (max-width:560px){.fish-tbl th,.fish-tbl td{padding:8px 6px}}
+.src{font-size:13.5px;color:var(--ink-3);margin:10px 0 0;line-height:1.6}
+.seg-b+.seg-b{margin-left:-1px}
+.seg-b:not(:first-of-type):not(:last-of-type){border-radius:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{font:inherit;font-size:14.5px;padding:6px 14px;border-radius:999px;border:1px solid var(--line-strong);background:var(--panel2);color:var(--ink);cursor:pointer}
+.pills button:hover{border-color:var(--accent)}
+.pills button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:600}
+#afinfo .sym{grid-template-columns:auto 1fr}
+.three .card h5{color:var(--accent)}
+.nlab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}.nlab>div{min-width:0}
+.nlab h5{margin:0 0 8px;font-size:15px}
+table.nmx{border-collapse:separate;border-spacing:4px;font-variant-numeric:tabular-nums}
+table.nmx th{font-size:12.5px;font-weight:500;color:var(--ink-3);padding:0 4px;white-space:nowrap;text-align:center}
+table.nmx td{padding:0}
+table.nmx td.g0{box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--c3) 60%,transparent)}
+table.nmx td.g1{box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--b) 60%,transparent)}
+table.nmx td.g2{box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--a) 60%,transparent)}
+.cell{display:grid;place-items:center;width:46px;height:38px;border-radius:6px;border:1px solid var(--line);background:var(--panel2);font:inherit;font-size:15px;color:var(--ink);cursor:pointer;padding:0}
+.cell:disabled{cursor:not-allowed;opacity:.4}
+.cell.out{cursor:default;font-size:13.5px;background:var(--panel2)}
+.cell.ref{border:2px solid var(--accent);background:var(--accent-soft);font-weight:600}
+.cell.sel{outline:3px solid var(--ink);outline-offset:1px}
+@media (max-width:900px){.nlab{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:420px){.cell{width:38px;height:34px;font-size:13.5px}.cell.out{font-size:12px}}
+
+.series{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.series a{font-size:13.5px;padding:3px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2);text-decoration:none;background:var(--panel)}
+.series a:hover{border-color:var(--accent);color:var(--ink)}
+.series a.on{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:700}
+.byline{margin:14px 0 0;font-size:14.5px;color:var(--ink-2)}
+.hero h1{max-width:22ch;overflow-wrap:anywhere}
+.three .card h5 a{color:inherit}
+.sb{margin-top:12px}
+.sbr{display:grid;grid-template-columns:44px minmax(0,1fr) 54px;gap:8px;align-items:center;font-size:14px;margin:8px 0}
+.sbr output{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+.sbt{position:relative;height:16px;background:var(--panel2);border-radius:8px}
+.sbt i{position:absolute;left:0;top:0;bottom:0;display:block;border-radius:8px;background:var(--accent)}
+.sbr.te .sbt i{background:var(--c3)}
+.sbt b{position:absolute;top:-5px;bottom:-5px;width:3px;margin-left:-1px;background:var(--ink);border-radius:2px}
+.sbt.mid::after{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1px;background:var(--ink-3)}
+.wbar{grid-template-columns:76px minmax(0,1fr) 54px}
+.sbn{margin:6px 0 0;font-size:14px;color:var(--ink-2);line-height:1.6}
+.plab{font-variant-numeric:tabular-nums;font-size:14px;color:var(--ink-2);min-width:6.5em}
+.anim-ctl input[type=range]{width:auto}
+.cvt{margin:0 0 6px;font-size:14.5px;font-weight:600;color:var(--ink-2)}
+.codetabs .pills{margin-bottom:10px}
+.codepre{margin:0;padding:16px 18px;max-height:480px;overflow:auto;font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,"D2Coding",monospace;font-size:13.5px;line-height:1.6;color:var(--ink);tab-size:4;white-space:pre}
+.runres{margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--panel)}
+.runres summary{cursor:pointer;font-size:14.5px;color:var(--ink-2)}
+.runres pre{margin:10px 0 0;overflow:auto;font-size:13px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;background:var(--panel2);padding:1px 5px;border-radius:4px}
+.teach-link{margin:0 0 16px;padding:12px 16px;border:1px solid var(--accent);border-radius:10px;background:var(--accent-soft);font-size:15.5px}
+.author p{margin:6px 0 0;max-width:72ch}
+.outro-list{margin:10px 0 0;padding-left:20px;font-size:15px;color:var(--ink)}
+.outro-list li{margin:0 0 6px}
+.outro-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.outro-nav a{font-size:14px;text-decoration:none;border:1px solid var(--line-strong);border-radius:8px;padding:6px 12px;color:var(--ink);background:var(--panel2)}
+.outro-nav a.nx{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:600}
+.thanks .bubble{max-width:520px}
+.thanks .bubble .nq{margin:12px 0 0;font-size:14.5px;color:var(--accent);font-weight:600}
+.cc{display:inline-block;font-size:12.5px;font-weight:700;border:1.5px solid var(--ink-2);border-radius:5px;padding:1px 7px;color:var(--ink);text-decoration:none;margin-right:8px}
+.dials{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px 22px}
+.dial{display:flex;flex-direction:column;gap:6px}
+.dial .dl{font-size:14px;font-weight:600;color:var(--ink-2)}
+.custgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 22px;margin:4px 0 6px}
+.custgrid h5{margin:0 0 4px;font-size:14.5px}
+.custgrid .ctl{grid-template-columns:62px 1fr 44px;font-size:13.5px}
+.custgrid .ctl label{font-family:var(--sans);font-size:13.5px}
+.logtbl td,.logtbl th{white-space:nowrap;font-size:13.5px;padding:6px 8px}
+.logtbl td.chg{background:color-mix(in srgb,var(--b) 24%,transparent);font-weight:700}
+.tasks li{line-height:1.65;font-size:15.5px}
+.ans-grid{display:grid;gap:14px}
+@media (max-width:900px){.custgrid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.dials{grid-template-columns:minmax(0,1fr)}.sbr{grid-template-columns:40px minmax(0,1fr) 50px}}
+.part-head h2{overflow-wrap:anywhere}
+.three-cv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:12px}
+.cvs{margin:8px 0 0;font-size:14px;line-height:1.6}
+.kind-svg{display:block;width:100%;height:auto;margin:6px 0 10px}
+.three .card p.kq{font-size:13.5px;color:var(--accent);margin-top:8px}
+.three .card p b{color:var(--ink)}
+.sm{font-size:13.5px;color:var(--ink-2)}
+.coin{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;font-family:var(--sans);font-size:14px;margin:8px 0}
+.coin .cbar{height:16px}
+.two-way{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.two-way .tw{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--panel2)}
+.two-way h5{margin:0 0 6px;font-size:15px;color:var(--accent)}.two-way p{margin:4px 0;font-size:15px}
+.two-way .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}.two-way .big span{font-size:16px;color:var(--ink-2);font-weight:500}
+.ent-tbl td.n{text-align:right}
+@media (max-width:900px){.three-cv,.two-way{grid-template-columns:minmax(0,1fr)}}
+#xor-tbl th,#xor-tbl td{text-align:center}
+.chat{display:grid;gap:10px;margin:18px 0 0;max-width:760px}
+.say{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;align-items:start}
+.say .av{width:56px;height:56px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid var(--line-strong)}
+.say.haru .av{border-color:#e48aa8}.say.robo .av{border-color:var(--accent)}
+.robo-w{margin:10px 0 0}.robo-w .sbub p{font-size:15px}.say.doc .av{border-color:var(--a)}.say.fly .av{border-color:var(--c3)}
+.sbub{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 14px}
+.sbub::before{content:"";position:absolute;left:-7px;top:18px;width:12px;height:12px;background:inherit;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+.sbub b{display:block;font-size:13px;color:var(--ink-2);margin-bottom:2px}
+.sbub p{margin:0;font-size:15.5px;line-height:1.6}
+.part .chat{margin:0 0 20px}
+.outro{padding:56px 0 36px;border-top:1px solid var(--line)}
+.outro .ot{font-size:clamp(24px,3vw,32px);margin:0 0 18px}
+.outro-grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:28px;align-items:start}
+.oimg{width:100%;height:auto;border-radius:14px;display:block}
+.outro .chat{margin:0}
+.outro-list{margin:6px 0 0;padding-left:20px;font-size:15px}
+@media (max-width:760px){.outro-grid{grid-template-columns:minmax(0,1fr)}}
+
+.ans{padding:40px 0 20px;border-top:1px solid var(--line)}
+.qa{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:0 0 12px}
+.qa .qn{font-weight:700;margin:0 0 8px;font-size:16px}
+.qa ol{margin:0 0 8px;padding-left:0;list-style:none}.qa li{margin:2px 0;font-size:15px}
+.qa li.ok{color:var(--a);font-weight:700}
+.qa p{margin:6px 0 0;font-size:15px}
+.qa .tagx{display:inline-block;font-size:12.5px;font-weight:700;border-radius:4px;padding:0 6px;margin-right:6px;background:var(--panel2);border:1px solid var(--line)}
+.ment{width:100%;border-collapse:collapse;font-size:15px;margin:6px 0 16px}.ment th,.ment td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}.ment th{width:56px;color:var(--ink-2);font-size:14px}
+.back{font-size:14px}
+</style>
+<style id="nn-i18n-css">.langsel{margin-left:6px;font:inherit;font-size:13.5px;padding:4px 6px;border-radius:6px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);flex:none}.sbr{grid-template-columns:88px minmax(0,1fr) 54px}.wbar{grid-template-columns:118px minmax(0,1fr) 54px}.sbr span{overflow-wrap:anywhere;line-height:1.25}@media (max-width:640px){.sbr{grid-template-columns:72px minmax(0,1fr) 50px}}:root{--sans:"IBM Plex Sans","IBM Plex Sans KR","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs></svg>
+<nav class="top" aria-label="Contents"><div class="wrap"><a class="brand" href="index.html"><svg class="mark" viewBox="0 0 22 22" aria-hidden="true"><circle cx="5" cy="6" r="2.4" fill="var(--a)"/><circle cx="5" cy="16" r="2.4" fill="var(--b)"/><circle cx="16" cy="11" r="4.2" fill="none" stroke="var(--accent)" stroke-width="1.6"/><line x1="7.4" y1="6.8" x2="12" y2="9.6" stroke="var(--ink-2)" stroke-width="1.2"/><line x1="7.4" y1="15.2" x2="12" y2="12.4" stroke="var(--ink-2)" stroke-width="1.2"/></svg><span>Learning Neural Nets</span></a><a href="#a1">1 Perceptron</a><a href="#a2">2 Activation functions</a><a href="#a3">3 Cost functions</a><a href="#a4">4 Normalization</a><a href="#a5">5 Lab</a><a href="#a6">6 Regions & probability</a><select class="langsel" aria-label="Language" onchange="nnSetLang(this.value)"><option value="ko">한국어</option><option value="en" selected>English</option><option value="zh">中文</option><option value="ja">日本語</option><option value="uz">O'zbekcha</option><option value="ru">Русский</option></select></div></nav><header class="hero" id="top"><div class="wrap"><nav class="series" aria-label="Series"><a href="index.html">Home</a><a href="1_perceptron.html">1 Perceptron</a><a href="2_activation.html">2 Activation functions</a><a href="3_cost_function.html">3 Cost functions</a><a href="4_normalization.html">4 Normalization</a><a href="5_lab.html">5 Lab</a><a href="6_regions_probability.html">6 Regions & probability</a></nav><div class="kicker">Neural Networks Learn by Being Wrong</div><h1>Answer key for educators</h1>
+<p class="lede">Learners should solve each part's questions first, then check here. Instructors can adjust the points and scripts to fit their class. The result numbers were actually produced with Python 3 · scikit-learn 1.9.</p></div></header>
+<section class="ans" id="a1"><div class="wrap"><div class="part-head"><div class="part-no">1</div><h2>Perceptron — multiply, add, and fix it when wrong</h2><p><a class="back" href="1_perceptron.html#author-sec">Back to the educator notes on the Part 1 page</a></p></div><p>6 check questions · 2 points each (12 total). Correct answer + one-sentence reason = 2 points, correct answer only = 1 point, wrong answer but key reason stated = 1 point.</p><div class="qa"><p class="qn">Question 1 &nbsp;What happens to the weights when the perceptron predicts correctly?</p><ol><li class="">① They get a little bigger</li><li class="">② They get a little smaller</li><li class="ok">③ They don't change ✔ Answer</li></ol><p><span class="tagx">Explanation</span>When it's right, y − ŷ = 0, so w ← w + 0. A perceptron learns only from wrong examples.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 2 &nbsp;What happens to the decision boundary line when you change the bias b?</p><ol><li class="ok">① The slope stays the same; only its position shifts in parallel ✔ Answer</li><li class="">② The position stays the same; only the slope rotates</li><li class="">③ The line becomes a curve</li></ol><p><span class="tagx">Explanation</span>b shifts the line's position in parallel. The direction the line tilts is set by w.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 3 &nbsp;Which problem can a single perceptron never solve?</p><ol><li class="">① Two groups that can be split by a line</li><li class="ok">② A problem that can't be split by a line, like XOR ✔ Answer</li><li class="">③ A problem with 3 or more inputs</li></ol><p><span class="tagx">Explanation</span>One line can't separate XOR, where diagonal corners share the same class. You need stacked layers with a bending activation function.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 4 &nbsp;What does a perceptron with w = (1, 1), b = −5 say about a mail with 2 links and 2 exclamation marks?</p><ol><li class="">① Spam (ŷ = 1)</li><li class="ok">② Normal (ŷ = 0) ✔ Answer</li><li class="">③ Can't tell</li></ol><p><span class="tagx">Explanation</span>z = 1×2 + 1×2 − 5 = −1 &lt; 0, so ŷ = 0: normal.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 5 &nbsp;On the hard set, the perceptron's test accuracy came out lower than the baseline (0.667). What is the best explanation?</p><ol><li class="ok">① The two groups overlap and can't be split by one line, so it didn't converge, and the line where it stopped happened to be bad ✔ Answer</li><li class="">② There is a bug in the code. A perceptron always beats the baseline</li><li class="">③ Raising the epochs to 1,000 always gets 1.0</li></ol><p><span class="tagx">Explanation</span>With overlapping data, every time the line turns to fix one mail, another mail goes wrong. It never converges, and the final line is just where the set number of rounds ran out.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 6 &nbsp;What does it mean that the easy set's baseline is 0.714?</p><ol><li class="ok">① Just answering "normal" for every mail gets 71.4% of the test mails right ✔ Answer</li><li class="">② The perceptron got 71.4% right</li><li class="">③ 71.4% is spam</li></ol><p><span class="tagx">Explanation</span>75 of the 105 test mails are normal, so answering only "normal" gives 75/105 = 0.714. Accuracy should always be read alongside this number.</p><p><span class="tagx">Points</span>2 points</p></div><h3 style="margin:22px 0 8px;font-size:18px">Lecture script (four lines you can read as is)</h3><p style="margin:10px 0 4px;font-weight:700">Perceptron learning (01-5 animated diagram)</p><table class="ment"><tr><th>Intro</th><td>Today we watch a machine fix the mail scorecard by itself, instead of a person.</td></tr><tr><th>Demo</th><td>Ask before pressing play: when it meets a wrong mail, will the line turn toward that mail or away from it?</td></tr><tr><th>Question</th><td>Pause when one ✕ mark is left: to get this mail right, should we add w or subtract it? Check with the (y − ŷ) value on screen.</td></tr><tr><th>Wrap-up</th><td>A perceptron learns only from wrong examples. Common misconception: run it long enough and it always gets everything right → only when a line can split the data.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">Seeing it with mail (02)</p><table class="ment"><tr><th>Intro</th><td>We give the same perceptron the easy set and the hard set.</td></tr><tr><th>Demo</th><td>Before switching to the hard set: have students raise their hands if they think it will converge this time.</td></tr><tr><th>Question</th><td>Pause on the last frame: the test bar is left of the vertical line (baseline). Is it a bug?</td></tr><tr><th>Wrap-up</th><td>On overlapping data, a perceptron doesn't converge, and the final line is not an answer, just where it stopped.</td></tr></table></div></section><section class="ans" id="a2"><div class="wrap"><div class="part-head"><div class="part-no">2</div><h2>Activation functions — you need a bend to stack layers</h2><p><a class="back" href="2_activation.html#author-sec">Back to the educator notes on the Part 2 page</a></p></div><p>5 check questions · 2 points each (10 total). Correct answer + one-sentence reason = 2 points, correct answer only = 1 point, wrong answer but key reason stated = 1 point.</p><div class="qa"><p class="qn">Question 1 &nbsp;What happens if you change every hidden layer's activation function to f(z) = z?</p><ol><li class="">① It learns more complex curves</li><li class="ok">② Stacking layers is the same as a single line ✔ Answer</li><li class="">③ Learning becomes impossible</li></ol><p><span class="tagx">Explanation</span>W₂(W₁x) = (W₂W₁)x, so without a bend, any number of stacked layers equals one linear function.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 2 &nbsp;Which fits an output layer that must give probabilities for three classes: normal, spam, and ads?</p><ol><li class="">① ReLU</li><li class="">② Step function</li><li class="ok">③ Softmax ✔ Answer</li></ol><p><span class="tagx">Explanation</span>Softmax turns the outputs of all classes into probabilities that add up to 1.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 3 &nbsp;Why do the early layers learn poorly when you stack many sigmoid hidden layers?</p><ol><li class="ok">① Its gradient is at most 0.25, and these get multiplied layer after layer, shrinking ✔ Answer</li><li class="">② Because the output can be negative</li><li class="">③ Because the computation is too slow</li></ol><p><span class="tagx">Explanation</span>When the gradient is passed backward through each layer, numbers of 0.25 or less keep getting multiplied, so it approaches 0. This is the vanishing gradient, and it's why hidden layers mostly use ReLU.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 4 &nbsp;With f(z) = z, the output for input (0, 0) becomes 2, a wrong "spam". Why?</p><ol><li class="ok">① Without a bend, h₁ − 2h₂ = −(x₁ + x₂) + 2, which is just a single line ✔ Answer</li><li class="">② The weights were chosen badly. With other weights, a linear network could solve it</li><li class="">③ Because there are only two hidden neurons</li></ol><p><span class="tagx">Explanation</span>Stacked linear layers simplify back into a single linear expression (a line). XOR can't be split by a line, so a bending activation function is a must.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 5 &nbsp;On the hard set, switching the activation function to ReLU still leaves test accuracy near the baseline. What is the best reason?</p><ol><li class="ok">① The two kinds of mail are mixed in the same spots on the links–exclamation plane, so no boundary shape can split them ✔ Answer</li><li class="">② ReLU cut negatives to 0 and lost information</li><li class="">③ 8 hidden neurons is too many</li></ol><p><span class="tagx">Explanation</span>Bends solve shapes a line can't handle (XOR), but they can't solve overlap where the same input has different answers. A new feature is needed (character count in Part 4).</p><p><span class="tagx">Points</span>2 points</p></div><h3 style="margin:22px 0 8px;font-size:18px">Lecture script (four lines you can read as is)</h3><p style="margin:10px 0 4px;font-weight:700">Solving XOR (02)</p><table class="ment"><tr><th>Intro</th><td>We retry the XOR that failed in Part 1, this time with two hidden neurons.</td></tr><tr><th>Demo</th><td>Before pressing ‘No bend’: have students guess how the four points will land on the hidden plane.</td></tr><tr><th>Question</th><td>While looking at the hidden plane in linear mode: the four points lie on one line. Which line could split normal · spam · normal?</td></tr><tr><th>Wrap-up</th><td>We stack layers to fold the plane, and folding needs a bend. Common misconception: more neurons let a linear network solve it.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">Seeing it with mail (03)</p><table class="ment"><tr><th>Intro</th><td>This time we only swap the activation function and train on real mail.</td></tr><tr><th>Demo</th><td>Before pressing ReLU: have students predict whether the score will beat linear.</td></tr><tr><th>Question</th><td>On the frame where training ends: the boundary bent, but the test bar didn't move. What's missing?</td></tr><tr><th>Wrap-up</th><td>Bends solve shape problems; overlap needs information (features). Next: character count in Part 4.</td></tr></table></div></section><section class="ans" id="a3"><div class="wrap"><div class="part-head"><div class="part-no">3</div><h2>Cost functions and gradient descent — measure how wrong, then go downhill</h2><p><a class="back" href="3_cost_function.html#author-sec">Back to the educator notes on the Part 3 page</a></p></div><p>6 check questions · 2 points each (12 total). Correct answer + one-sentence reason = 2 points, correct answer only = 1 point, wrong answer but key reason stated = 1 point.</p><div class="qa"><p class="qn">Question 1 &nbsp;The answer is spam, but the model said the spam probability was 0.01. What is the cross-entropy loss?</p><ol><li class="ok">① About 4.6 (very large) ✔ Answer</li><li class="">② About 0.01 (very small)</li><li class="">③ Exactly 1</li></ol><p><span class="tagx">Explanation</span>−log 0.01 ≈ 4.6, a very large penalty for a confidently wrong prediction.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 2 &nbsp;At the current position, the gradient ∂J/∂w is +3. What does gradient descent do to w?</p><ol><li class="">① Increase it</li><li class="">② Leave it</li><li class="ok">③ Decrease it ✔ Answer</li></ol><p><span class="tagx">Explanation</span>A positive gradient means increasing w also increases J, so you must decrease w to bring J down.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 3 &nbsp;During training, the cost J doesn't drop but keeps growing. What should you suspect first?</p><ol><li class="">① The learning rate is too small</li><li class="ok">② The learning rate is too large ✔ Answer</li><li class="">③ There is too much data</li></ol><p><span class="tagx">Explanation</span>If the step is too big, it jumps over the valley floor and lands higher on the other side; as this repeats, J grows.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 4 &nbsp;The softmax output is (normal 0.66, spam 0.24, ads 0.10) and the answer is spam. What is the cross-entropy loss?</p><ol><li class="ok">① −log 0.24 ≈ 1.43 ✔ Answer</li><li class="">② −log 0.66 ≈ 0.42</li><li class="">③ The sum of −log over all three probabilities</li></ol><p><span class="tagx">Explanation</span>Multi-class cross-entropy looks only at the probability given to the correct class: −log 0.24 ≈ 1.43.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 5 &nbsp;Why is the cost curve for mini-batch 32 bumpier than for full batch?</p><ol><li class="ok">① Each batch computes the gradient from a different 32 mails, so the direction wobbles a little ✔ Answer</li><li class="">② Because the learning rate grows automatically</li><li class="">③ Because mini-batches don't use a cost function</li></ol><p><span class="tagx">Explanation</span>The average gradient of 32 mails is a 'sample' of the full average gradient, so it differs a little. That's why it wobbles, but it makes more updates per epoch and goes down faster.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 6 &nbsp;On the hard set, the training cost won't go below about 0.5. What is the best explanation?</p><ol><li class="ok">① Gradient descent reached the valley floor, but with one line the floor is high for this data ✔ Answer</li><li class="">② The learning rate is too small, so it's still going down</li><li class="">③ The cross-entropy was computed wrongly</li></ol><p><span class="tagx">Explanation</span>The lowest value of the cost function is set by the model and the data together. No line can confidently get the mixed mails right, so the floor is high.</p><p><span class="tagx">Points</span>2 points</p></div><h3 style="margin:22px 0 8px;font-size:18px">Lecture script (four lines you can read as is)</h3><p style="margin:10px 0 4px;font-weight:700">Gradient descent animation (01-4)</p><table class="ment"><tr><th>Intro</th><td>A ball rolls down the cost valley.</td></tr><tr><th>Demo</th><td>Before pressing η = 1.05: have students guess what happens when the step is made just a little bigger.</td></tr><tr><th>Question</th><td>Pause at the diverging scene: did the cost grow with every step? Read the J value on screen.</td></tr><tr><th>Wrap-up</th><td>The learning rate is the step size; too big and it jumps over the floor and diverges. Common misconception: bigger is always faster.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">Seeing it with mail (02)</p><table class="ment"><tr><th>Intro</th><td>We swap the step function in the Part 1 perceptron for a sigmoid and watch the cost curve too.</td></tr><tr><th>Demo</th><td>Before pressing mini-batch: ask whether the curve will get smoother or bumpier.</td></tr><tr><th>Question</th><td>At the end of the hard set: the curve is flat. Will raising the learning rate take it lower?</td></tr><tr><th>Wrap-up</th><td>A flat curve means it reached the floor, and the height of that floor is set by the data.</td></tr></table></div></section><section class="ans" id="a4"><div class="wrap"><div class="part-head"><div class="part-no">4</div><h2>Normalization — put numbers on the same scale</h2><p><a class="back" href="4_normalization.html#author-sec">Back to the educator notes on the Part 4 page</a></p></div><p>6 check questions · 2 points each (12 total). Correct answer + one-sentence reason = 2 points, correct answer only = 1 point, wrong answer but key reason stated = 1 point.</p><div class="qa"><p class="qn">Question 1 &nbsp;If the average character count is 2,000, what is a mail with 2,000 characters after standardization?</p><ol><li class="ok">① 0 ✔ Answer</li><li class="">② 1</li><li class="">③ 2,000</li></ol><p><span class="tagx">Explanation</span>(x − μ)/σ = (2,000 − 2,000)/σ = 0. A value equal to the mean becomes 0 after standardization.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 2 &nbsp;Which method works by the same rule in training and inference even with a batch size of 1?</p><ol><li class="">① BatchNorm</li><li class="ok">② LayerNorm ✔ Answer</li><li class="">③ Neither</li></ol><p><span class="tagx">Explanation</span>LayerNorm averages only over the features within one token, so it works by the same rule no matter the batch size.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 3 &nbsp;How is RMSNorm different from LayerNorm?</p><ol><li class="">① It also looks at other examples in the batch</li><li class="">② It splits channels into groups</li><li class="ok">③ It doesn't subtract the mean ✔ Answer</li></ol><p><span class="tagx">Explanation</span>RMSNorm doesn't subtract the mean; it only divides by √mean(x²), and usually learns only γ, without β.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 4 &nbsp;If you feed in character count without standardization and train with η = 1, the cost shoots up. What is the best reason?</p><ol><li class="ok">① Character counts are in the thousands, so the score z gets huge, and the sigmoid sticks at 0 or 1 and is confidently wrong ✔ Answer</li><li class="">② Because character count has nothing to do with spam</li><li class="">③ Because η = 1 is too big for any data</li></ol><p><span class="tagx">Explanation</span>In the gradient (p − y)x, x is in the thousands, so the character-count weight jumps hugely in one step. After standardization every feature is around 1, so the same η moves them all evenly.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 5 &nbsp;The μ and σ for standardization were computed from training and test data combined. What's the problem?</p><ol><li class="ok">① Information from the test data leaks into training, so scores can look better than they really are (data leakage) ✔ Answer</li><li class="">② The computation gets slower</li><li class="">③ No problem. More data makes μ and σ more accurate</li></ol><p><span class="tagx">Explanation</span>Compute μ and σ from training data only, and use those same values on test and new data. Wrapping it in a Pipeline keeps this order automatically.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 6 &nbsp;Raising λ to 2 dropped test accuracy to near the baseline. Why?</p><ol><li class="ok">① The penalty was so strong that even useful weights were pushed toward 0 ✔ Answer</li><li class="">② Because regularization caused overfitting</li><li class="">③ Because standardization was turned off</li></ol><p><span class="tagx">Explanation</span>When all weights get small, the score z bunches up near 0, and the model gives nearly the same probability for almost every mail. Use validation data to find a 'just right' λ.</p><p><span class="tagx">Points</span>2 points</p></div><h3 style="margin:22px 0 8px;font-size:18px">Lecture script (four lines you can read as is)</h3><p style="margin:10px 0 4px;font-weight:700">Before and after standardization (02)</p><table class="ment"><tr><th>Intro</th><td>We add character count to the hard set that Parts 2 and 3 couldn't beat.</td></tr><tr><th>Demo</th><td>Before seeing the result at η = 1: ask whether the raw numbers will also improve now that there is more information.</td></tr><tr><th>Question</th><td>On the screen where the raw-number cost shoots up: why is the character-count weight so large? Think about the gradient (p − y)x.</td></tr><tr><th>Wrap-up</th><td>Information and scale are separate needs. Common misconception: standardization is a trick to raise accuracy → it is preparation so that training works properly.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">Regularization (03)</p><table class="ment"><tr><th>Intro</th><td>Let's try a different technique with a similar name: regularization.</td></tr><tr><th>Demo</th><td>Before pushing λ up to 2: ask whether a stronger penalty will raise or lower the score.</td></tr><tr><th>Question</th><td>At λ = 2: all the weight bars got shorter. Where is the test bar compared to the baseline?</td></tr><tr><th>Wrap-up</th><td>Regularization is a brake on overfitting; too strong and it learns too little. Use validation to find a 'just right' λ.</td></tr></table></div></section><section class="ans" id="a5"><div class="wrap"><div class="part-head"><div class="part-no">5</div><h2>Lab — train while changing just one dial</h2><p><a class="back" href="5_lab.html#author-sec">Back to the educator notes on the Part 5 page</a></p></div><p>This part is assessed with <b>lab tasks</b> instead of check questions. The numbers in the sample results below were actually produced with the reference code (Python 3 · scikit-learn 1.9); the browser lab is a teaching implementation, so its numbers may differ slightly. If a student's numbers differ but the <b>direction</b> is the same, it's correct.</p><div class="qa"><p class="qn">Basic task 1 · Adding information</p><p><span class="tagx">Task</span>Hard set, default dials (ReLU · standardization on · η 0.1 · 8 hidden · 200 epochs), features 2 → 3, seeds 0–2.</p><p><span class="tagx">Sample result</span>Reference code f5_lab.py (5 seeds): 2 features 0.647 ± 0.019 → 3 features 0.970 ± 0.012, baseline 0.667. Beginner e5 (seed 0): 0.650 → 0.983.</p><p><span class="tagx">Sample interpretation</span>With links and exclamation marks alone, it is about the same as or below the baseline, because newsletters and phishing spam are mixed in the same spots on these two features. Adding character count separates the two groups, and test accuracy rises sharply. The difference is much larger than the wobble (±), so it is hard to call it luck.</p><p><span class="tagx">Scoring points</span>① Did they change only one feature? ② Did they interpret it against the baseline? ③ Did they judge by looking at the wobble across several seeds?</p></div><div class="qa"><p class="qn">Basic task 2 · Without matching the scales</p><p><span class="tagx">Task</span>In the 3-feature setup from task 1, turn off only standardization.</p><p><span class="tagx">Sample result</span>Reference code: 0.970 ± 0.012 → 0.667 ± 0.000 (same as the baseline 0.667). In the browser, the cost may swing wildly or stop at infinity.</p><p><span class="tagx">Sample interpretation</span>Accuracy exactly equal to the baseline means it answered every test mail with one side (normal). Character count (in the thousands) dominates the score, so the sigmoid sticks at 0 or 1 and the gradient barely reaches links and exclamation marks. The information was there, but the scale kept it from being used.</p><p><span class="tagx">Scoring points</span>① Did they change only standardization? ② Did they read what 'same as baseline' means (answering only one side)? ③ Did they explain it with the Part 4 principle (big numbers × same learning rate)?</p></div><div class="qa"><p class="qn">Challenge task 1 · Data that needs a bend</p><p><span class="tagx">Task</span>In Make your own, turn on 'Spam as two groups on both sides of normal mail' (e.g. normal links 5 · exclamation marks 5, spam links 9 · exclamation marks 9, spread 1), and compare linear vs ReLU with 2 features.</p><p><span class="tagx">Sample result</span>Browser example (seed 0): linear is near the baseline; ReLU is clearly above it. Numbers vary by setup, so check the student's record sheet.</p><p><span class="tagx">Sample interpretation</span>When spam sits on both sides of normal mail, one line can only cut off the spam on one side. A ReLU hidden layer folds the plane to bring both sides together, making a band-shaped boundary. It's the same idea as XOR in Part 2.</p><p><span class="tagx">Scoring points</span>① Did they include the distribution plot? ② Did they change only the activation? ③ Did they connect it to XOR?</p></div><div class="qa"><p class="qn">Challenge task 2 · Learning rate and epochs</p><p><span class="tagx">Task</span>Easy set, 50 epochs, with η 0.001 · 0.01 · 0.1 · 1.</p><p><span class="tagx">Sample result</span>Reference code (200 epochs): η 0.1 → 1.000, η 0.001 → 0.977 ± 0.019. With 50 epochs, η 0.001 barely lowers the cost and may stay near the baseline.</p><p><span class="tagx">Sample interpretation</span>With too small an η, the curve goes down slowly and almost flat, and doesn't reach the floor within the set epochs. With too large an η, it swings at first, but on this easy set it usually comes down in the end. Tell 'slow' apart from 'diverging' by the shape of the cost curve.</p><p><span class="tagx">Scoring points</span>① Did they change only η? ② Did they compare the shapes of the cost curves? ③ Did they mention how epochs affect the result?</p></div><h3 style="margin:22px 0 8px;font-size:18px">Lecture script (four lines you can read as is)</h3><p style="margin:10px 0 4px;font-weight:700">The whole lab</p><table class="ment"><tr><th>Intro</th><td>Now students turn the dials themselves. One rule: change only one thing at a time.</td></tr><tr><th>Demo</th><td>Before pressing Train: have students write down their guess for the test accuracy in the first row of the record sheet.</td></tr><tr><th>Question</th><td>To a student whose record sheet shows '3 dials changed': can you name the one reason accuracy went up?</td></tr><tr><th>Wrap-up</th><td>Read results together with the baseline and the seed wobble. Common misconception: a 0.02 gap from a single run means one is better.</td></tr></table></div></section><section class="ans" id="a6"><div class="wrap"><div class="part-head"><div class="part-no">6</div><h2>Models that draw lines and models that give probabilities — regions, probability, numbers</h2><p><a class="back" href="6_regions_probability.html#author-sec">Back to the educator notes on the Part 6 page</a></p></div><p>4 check questions · 2 points each (8 total). Correct answer + one-sentence reason = 2 points, correct answer only = 1 point, wrong answer but key reason stated = 1 point.</p><div class="qa"><p class="qn">Question 1 &nbsp;On the hard set, SVM and logistic had the same test accuracy. So why is only logistic's cross-entropy finite?</p><ol><li class="ok">① In mixed areas, logistic says “about 50/50”, so even when wrong, it isn't very surprised ✔ Answer</li><li class="">② Because logistic got more right</li><li class="">③ Because SVM has its own special way to compute cross-entropy</li></ol><p><span class="tagx">Explanation</span>Cross-entropy grows as the probability given to the answer gets lower. A region-type model in effect gives wrong mails a probability of 0, so −log 0 = ∞.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 2 &nbsp;Before tossing a coin, what is the entropy when the chance of heads is 0.5 versus 0.99?</p><ol><li class="ok">① Larger at 0.5 (most hesitant) ✔ Answer</li><li class="">② Larger at 0.99</li><li class="">③ They are the same</li></ol><p><span class="tagx">Explanation</span>Entropy is 'hesitation before looking'. It peaks at 50/50 (0.693) and gets closer to 0 the more it leans to one side.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 3 &nbsp;Why is a kernel SVC still 'region-type' even after it can make island-shaped zones?</p><ol><li class="ok">① Only the zone's shape got freer; the answer is still “inside or outside” ✔ Answer</li><li class="">② Because using a kernel automatically gives probabilities</li><li class="">③ It is region-type only when γ is small</li></ol><p><span class="tagx">Explanation</span>Region-type and probability-type differ not by the boundary's shape but by 'whether it says how sure it is'.</p><p><span class="tagx">Points</span>2 points</p></div><div class="qa"><p class="qn">Question 4 &nbsp;Linear regression predicted “4.2 reports ± 2.7 reports”. What is closest to the meaning of ± 2.7?</p><ol><li class="ok">① The width of a bell-shaped distribution centered on the prediction. About 95% of actual values fall in this range ✔ Answer</li><li class="">② The model was wrong 2.7 times</li><li class="">③ The chance of spam is 27%</li></ol><p><span class="tagx">Explanation</span>Seen as a distribution, linear regression's value on the line is the mean, and the standard deviation σ of the residuals is the bell's width. About 95% falls within μ ± 1.96σ.</p><p><span class="tagx">Points</span>2 points</p></div><h3 style="margin:22px 0 8px;font-size:18px">Lecture guidelines</h3><p>This part is animation-based, so it comes with lecture guidelines alongside the check questions.</p><div class="qa"><p class="qn">1. Don't let the motion be mistaken for learning itself</p><ul style="margin:0;padding-left:20px"><li>First tell students that each frame is the real state after one epoch (step), and frames are not blended together.</li><li>Point out that the kernel SVC in the browser is an approximation using random Fourier features. For official results, use the SVC numbers from f6.</li></ul></div><div class="qa"><p class="qn">2. Scores go with the baseline</p><ul style="margin:0;padding-left:20px"><li>For classification, the baseline is 'answer only with the larger side'; for regression, 'answer only with the mean'.</li><li>On the hard set, don't call a small gap like 0.683 vs 0.667 a win. It flips with the seed and the split.</li></ul></div><div class="qa"><p class="qn">3. Common misconceptions by model</p><ul style="margin:0;padding-left:20px"><li>'SVM gives probabilities' → No. It only gives scores (distances); probabilities come from an add-on step like Platt.</li><li>'Using a kernel makes it probability-type' → Only the shape of the zones changes.</li><li>'Fitting 0/1 with linear regression makes it classification' → Predictions go outside 0–1, and the line gets dragged by far-away data. Use logistic for classification.</li></ul></div><div class="qa"><p class="qn">4. Entropy made easy</p><ul style="margin:0;padding-left:20px"><li>Entropy = hesitation before looking; cross-entropy = surprise after looking. Call the two words by the same names all the way through.</li><li>Writing a table (0.5 · 0.9 · 0.99 · 1) on the board and having students fill in the −log values with a calculator speeds up understanding.</li></ul></div><div class="qa"><p class="qn">5. Limits of the pictures</p><ul style="margin:0;padding-left:20px"><li>We could draw it because there are two features. Real filters use thousands of features.</li><li>Colors in outer areas with no data are the model's guess (extrapolation). Be careful especially with large-γ kernels.</li></ul></div><div class="qa"><p class="qn">6. Classroom tips</p><ul style="margin:0;padding-left:20px"><li>Sample plan (50 min): 01 analogies 10 min → 02 training side by side 10 min → 04 entropy map 15 min → 05 coin and bell 10 min → wrap-up 5 min.</li><li>03 Kernel flows naturally if you first show Part 2's XOR again.</li><li>04 needs tapping on the map, so a PC or tablet is recommended.</li></ul></div><h3 style="margin:22px 0 8px;font-size:18px">Lecture script (four lines you can read as is)</h3><p style="margin:10px 0 4px;font-weight:700">Three models training side by side (02)</p><table class="ment"><tr><th>Intro</th><td>Today we re-sort the models we've met since Part 1 by 'how they answer'.</td></tr><tr><th>Demo</th><td>Before playing: have students predict whether the three lines will all land in the same place on the easy set.</td></tr><tr><th>Question</th><td>On the last frame: why is the SVM's line closer to the middle of the two groups than the perceptron's? Count the outlined mails.</td></tr><tr><th>Wrap-up</th><td>They use the same line z, but their positions and answers differ. Common misconception: SVM is always more accurate → its position just has more 'room'.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">Entropy map (04)</p><table class="ment"><tr><th>Intro</th><td>We paint the spots where the model says 'not sure' on the map.</td></tr><tr><th>Demo</th><td>Before pressing Plain SVM: have students predict what the entropy map will look like (answer: all 0).</td></tr><tr><th>Question</th><td>With logistic on the hard set, have students tap right on the boundary: what is the entropy? Why is it close to 0.693?</td></tr><tr><th>Wrap-up</th><td>Entropy is hesitation; cross-entropy is surprise. Even with the same accuracy, some models are 'rightly confident'.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">Coin and bell (05)</p><table class="ment"><tr><th>Intro</th><td>A problem whose answer is a number: we predict spam reports.</td></tr><tr><th>Demo</th><td>Before moving the slider from 0 to 12: ask how the coin and the bell will each change.</td></tr><tr><th>Question</th><td>Looking at the baseline RMSE and model RMSE bars: why is the regression baseline 'answer only with the mean'?</td></tr><tr><th>Wrap-up</th><td>Classification is a coin, regression is a bell — both build a probability distribution and learn to be less surprised by the answer.</td></tr></table></div></section>
+<footer><div class="wrap"><p><b>Neural Networks Learn by Being Wrong · Answer key for educators</b> — Written by Ahn Sangsun (CEO, M-Robo Inc.)</p><p style="margin-top:10px"><a class="cc" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en" rel="license">CC BY-NC 4.0</a></p></div></footer>
+<script>
+(function(){
+/* nav */
+const links=[...document.querySelectorAll('nav.top a[href^="#"]:not(.brand)')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+function mark(id){links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);if(on){a.setAttribute('aria-current','true');const w=a.parentElement;const l=a.offsetLeft-w.clientWidth/2+a.offsetWidth/2;w.scrollTo({left:l})}else a.removeAttribute('aria-current')})}
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)mark(e.target.id)})},{rootMargin:'-45% 0px -50% 0px'});secs.forEach(x=>io.observe(x))}
+})();
+</script>
+</body></html>

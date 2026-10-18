@@ -1,0 +1,661 @@
+id,kind,kind_ko,chars,links,exclaims,spam,set,split,reports
+1,ad_spam,광고 스팸,1320,11,9,1,easy,train,12
+2,business,업무 메일,1780,1,0,0,easy,train,2
+3,business,업무 메일,1000,0,0,0,easy,train,0
+4,ad_spam,광고 스팸,530,7,7,1,easy,train,6
+5,business,업무 메일,1450,0,1,0,easy,train,2
+6,business,업무 메일,650,0,1,0,easy,train,1
+7,phishing,피싱 스팸,440,2,5,1,hard,train,3
+8,ad_spam,광고 스팸,810,5,10,1,easy,train,8
+9,ad_spam,광고 스팸,340,9,9,1,easy,train,11
+10,phishing,피싱 스팸,1340,1,1,1,hard,train,2
+11,business,업무 메일,1340,0,0,0,easy,train,0
+12,ad_spam,광고 스팸,200,7,12,1,easy,train,11
+13,phishing,피싱 스팸,1070,5,3,1,hard,train,4
+14,business,업무 메일,730,0,1,0,easy,train,0
+15,business,업무 메일,930,1,0,0,easy,train,0
+16,newsletter,뉴스레터,3320,5,6,0,hard,train,7
+17,newsletter,뉴스레터,2780,5,2,0,hard,train,5
+18,newsletter,뉴스레터,4500,4,0,0,hard,train,3
+19,business,업무 메일,1030,0,1,0,easy,train,0
+20,business,업무 메일,1100,1,0,0,easy,train,0
+21,newsletter,뉴스레터,3850,1,2,0,hard,train,2
+22,business,업무 메일,290,0,1,0,easy,test,0
+23,business,업무 메일,1490,0,1,0,easy,test,2
+24,newsletter,뉴스레터,5620,6,0,0,hard,train,6
+25,phishing,피싱 스팸,1510,2,2,1,hard,train,0
+26,business,업무 메일,1350,1,0,0,easy,train,0
+27,newsletter,뉴스레터,3130,5,2,0,hard,train,4
+28,business,업무 메일,960,3,1,0,easy,train,2
+29,phishing,피싱 스팸,1110,5,3,1,hard,train,5
+30,ad_spam,광고 스팸,720,7,4,1,easy,train,7
+31,ad_spam,광고 스팸,290,7,8,1,easy,train,11
+32,ad_spam,광고 스팸,490,8,7,1,easy,train,7
+33,newsletter,뉴스레터,4790,1,1,0,hard,train,1
+34,ad_spam,광고 스팸,370,6,7,1,easy,train,10
+35,newsletter,뉴스레터,4110,3,0,0,hard,train,3
+36,business,업무 메일,1370,0,0,0,easy,train,1
+37,ad_spam,광고 스팸,640,7,5,1,easy,test,7
+38,newsletter,뉴스레터,3110,2,0,0,hard,train,0
+39,newsletter,뉴스레터,5280,4,0,0,hard,train,3
+40,business,업무 메일,1390,0,2,0,easy,train,1
+41,ad_spam,광고 스팸,310,7,2,1,easy,train,5
+42,business,업무 메일,540,1,1,0,easy,test,0
+43,business,업무 메일,990,0,0,0,easy,train,0
+44,phishing,피싱 스팸,1020,6,2,1,hard,test,4
+45,business,업무 메일,1380,0,2,0,easy,train,1
+46,ad_spam,광고 스팸,520,4,9,1,easy,test,6
+47,phishing,피싱 스팸,1400,3,1,1,hard,train,3
+48,ad_spam,광고 스팸,1110,5,5,1,easy,train,5
+49,business,업무 메일,1650,3,0,0,easy,train,3
+50,newsletter,뉴스레터,5780,3,1,0,hard,train,4
+51,newsletter,뉴스레터,910,7,0,0,hard,train,6
+52,ad_spam,광고 스팸,740,4,3,1,easy,train,3
+53,phishing,피싱 스팸,1270,3,1,1,hard,train,4
+54,phishing,피싱 스팸,1950,4,4,1,hard,train,4
+55,newsletter,뉴스레터,2440,9,2,0,hard,train,9
+56,ad_spam,광고 스팸,660,5,6,1,easy,train,5
+57,business,업무 메일,1030,1,0,0,easy,test,2
+58,phishing,피싱 스팸,560,2,3,1,hard,train,3
+59,newsletter,뉴스레터,3270,5,0,0,hard,train,2
+60,newsletter,뉴스레터,5050,3,2,0,hard,train,3
+61,newsletter,뉴스레터,2540,3,2,0,hard,train,3
+62,business,업무 메일,800,0,1,0,easy,train,1
+63,business,업무 메일,990,0,0,0,easy,train,0
+64,business,업무 메일,2240,0,3,0,easy,train,0
+65,business,업무 메일,1420,2,0,0,easy,test,2
+66,newsletter,뉴스레터,5000,1,4,0,hard,train,2
+67,ad_spam,광고 스팸,750,9,9,1,easy,train,11
+68,business,업무 메일,1460,3,1,0,easy,train,4
+69,newsletter,뉴스레터,3190,1,0,0,hard,test,0
+70,ad_spam,광고 스팸,1180,4,6,1,easy,train,6
+71,business,업무 메일,1040,1,1,0,easy,train,3
+72,business,업무 메일,950,0,1,0,easy,train,0
+73,business,업무 메일,960,2,2,0,easy,train,1
+74,ad_spam,광고 스팸,1020,4,3,1,easy,test,5
+75,business,업무 메일,1480,0,1,0,easy,train,1
+76,business,업무 메일,730,0,2,0,easy,train,2
+77,ad_spam,광고 스팸,450,9,6,1,easy,train,9
+78,business,업무 메일,1240,0,1,0,easy,train,0
+79,ad_spam,광고 스팸,560,4,5,1,easy,train,5
+80,business,업무 메일,1590,2,0,0,easy,train,1
+81,business,업무 메일,1220,1,1,0,easy,train,2
+82,newsletter,뉴스레터,5190,3,1,0,hard,train,3
+83,newsletter,뉴스레터,5210,2,1,0,hard,test,0
+84,phishing,피싱 스팸,940,0,6,1,hard,train,0
+85,business,업무 메일,1810,0,1,0,easy,train,2
+86,business,업무 메일,1040,1,0,0,easy,train,2
+87,newsletter,뉴스레터,3760,3,1,0,hard,train,2
+88,phishing,피싱 스팸,2030,3,0,1,hard,train,2
+89,business,업무 메일,1060,0,1,0,easy,train,1
+90,newsletter,뉴스레터,5150,5,1,0,hard,train,5
+91,phishing,피싱 스팸,1600,3,1,1,hard,test,4
+92,ad_spam,광고 스팸,440,9,12,1,easy,train,12
+93,newsletter,뉴스레터,2540,9,1,0,hard,test,7
+94,ad_spam,광고 스팸,660,7,9,1,easy,train,8
+95,business,업무 메일,1460,0,0,0,easy,train,1
+96,business,업무 메일,1200,1,2,0,easy,train,0
+97,business,업무 메일,680,0,0,0,easy,train,0
+98,business,업무 메일,2440,1,2,0,easy,train,2
+99,ad_spam,광고 스팸,650,8,2,1,easy,test,5
+100,business,업무 메일,430,0,0,0,easy,test,0
+101,business,업무 메일,630,0,0,0,easy,test,0
+102,ad_spam,광고 스팸,700,8,8,1,easy,test,10
+103,newsletter,뉴스레터,5480,2,0,0,hard,test,1
+104,ad_spam,광고 스팸,540,8,7,1,easy,train,10
+105,newsletter,뉴스레터,5160,2,2,0,hard,test,4
+106,business,업무 메일,1250,2,1,0,easy,train,2
+107,business,업무 메일,1940,0,0,0,easy,train,0
+108,business,업무 메일,1990,1,0,0,easy,train,0
+109,newsletter,뉴스레터,4030,3,2,0,hard,test,6
+110,ad_spam,광고 스팸,370,6,8,1,easy,train,7
+111,ad_spam,광고 스팸,1090,8,3,1,easy,train,6
+112,business,업무 메일,480,1,0,0,easy,train,1
+113,ad_spam,광고 스팸,740,3,9,1,easy,test,5
+114,newsletter,뉴스레터,3980,2,4,0,hard,test,4
+115,business,업무 메일,910,2,0,0,easy,test,2
+116,business,업무 메일,1250,1,0,0,easy,train,1
+117,business,업무 메일,2220,1,0,0,easy,train,0
+118,ad_spam,광고 스팸,1030,10,9,1,easy,train,12
+119,newsletter,뉴스레터,4450,7,1,0,hard,train,5
+120,business,업무 메일,1370,0,1,0,easy,test,1
+121,business,업무 메일,570,2,0,0,easy,train,4
+122,business,업무 메일,520,1,1,0,easy,train,0
+123,ad_spam,광고 스팸,740,5,8,1,easy,train,3
+124,ad_spam,광고 스팸,600,7,4,1,easy,test,8
+125,phishing,피싱 스팸,830,4,1,1,hard,train,7
+126,phishing,피싱 스팸,1860,4,3,1,hard,train,3
+127,newsletter,뉴스레터,5340,2,0,0,hard,train,0
+128,newsletter,뉴스레터,4510,5,5,0,hard,test,7
+129,business,업무 메일,1170,0,1,0,easy,train,0
+130,business,업무 메일,790,3,0,0,easy,train,2
+131,ad_spam,광고 스팸,850,11,8,1,easy,train,11
+132,business,업무 메일,1170,0,0,0,easy,train,1
+133,business,업무 메일,1170,0,1,0,easy,train,0
+134,newsletter,뉴스레터,4450,4,0,0,hard,train,4
+135,business,업무 메일,1070,0,2,0,easy,train,0
+136,phishing,피싱 스팸,1250,2,2,1,hard,train,1
+137,phishing,피싱 스팸,1630,1,4,1,hard,test,2
+138,ad_spam,광고 스팸,830,6,8,1,easy,test,6
+139,business,업무 메일,530,0,0,0,easy,train,0
+140,phishing,피싱 스팸,1100,1,0,1,hard,test,0
+141,business,업무 메일,1250,0,0,0,easy,train,0
+142,newsletter,뉴스레터,2500,6,0,0,hard,train,7
+143,phishing,피싱 스팸,2870,0,3,1,hard,train,1
+144,business,업무 메일,1820,0,1,0,easy,test,0
+145,ad_spam,광고 스팸,540,3,11,1,easy,train,7
+146,newsletter,뉴스레터,5540,4,2,0,hard,test,3
+147,phishing,피싱 스팸,1630,3,2,1,hard,test,3
+148,business,업무 메일,620,0,0,0,easy,train,1
+149,ad_spam,광고 스팸,450,3,8,1,easy,train,6
+150,phishing,피싱 스팸,1740,5,5,1,hard,train,4
+151,newsletter,뉴스레터,2970,4,2,0,hard,train,5
+152,business,업무 메일,1340,1,0,0,easy,train,0
+153,business,업무 메일,940,0,0,0,easy,train,0
+154,newsletter,뉴스레터,3780,6,3,0,hard,train,5
+155,business,업무 메일,910,0,0,0,easy,train,0
+156,newsletter,뉴스레터,4850,2,1,0,hard,train,4
+157,business,업무 메일,1330,2,0,0,easy,train,0
+158,phishing,피싱 스팸,1930,5,2,1,hard,train,5
+159,newsletter,뉴스레터,2020,2,1,0,hard,train,0
+160,business,업무 메일,980,0,1,0,easy,train,0
+161,business,업무 메일,770,0,1,0,easy,train,2
+162,business,업무 메일,870,2,1,0,easy,train,2
+163,business,업무 메일,1380,1,0,0,easy,train,0
+164,business,업무 메일,1990,2,0,0,easy,test,2
+165,newsletter,뉴스레터,4170,5,3,0,hard,train,6
+166,newsletter,뉴스레터,5200,2,2,0,hard,test,3
+167,newsletter,뉴스레터,4140,2,0,0,hard,test,4
+168,business,업무 메일,340,0,0,0,easy,train,0
+169,phishing,피싱 스팸,2190,3,5,1,hard,train,3
+170,newsletter,뉴스레터,6240,5,0,0,hard,train,4
+171,ad_spam,광고 스팸,360,7,8,1,easy,train,8
+172,newsletter,뉴스레터,3920,1,2,0,hard,train,2
+173,business,업무 메일,980,1,1,0,easy,train,1
+174,ad_spam,광고 스팸,750,11,8,1,easy,train,12
+175,newsletter,뉴스레터,7220,5,1,0,hard,train,2
+176,business,업무 메일,870,0,1,0,easy,train,2
+177,ad_spam,광고 스팸,500,11,8,1,easy,train,11
+178,ad_spam,광고 스팸,650,8,7,1,easy,train,7
+179,newsletter,뉴스레터,4260,2,0,0,hard,train,2
+180,newsletter,뉴스레터,3760,3,1,0,hard,train,5
+181,business,업무 메일,670,1,1,0,easy,train,2
+182,business,업무 메일,1100,1,1,0,easy,test,1
+183,business,업무 메일,1340,1,1,0,easy,train,0
+184,business,업무 메일,1330,0,1,0,easy,train,4
+185,ad_spam,광고 스팸,290,3,7,1,easy,train,6
+186,business,업무 메일,1500,1,1,0,easy,train,0
+187,business,업무 메일,710,0,1,0,easy,test,0
+188,business,업무 메일,970,0,0,0,easy,train,0
+189,business,업무 메일,1630,0,1,0,easy,train,0
+190,newsletter,뉴스레터,6290,3,3,0,hard,train,4
+191,newsletter,뉴스레터,3480,2,2,0,hard,train,2
+192,business,업무 메일,1930,0,0,0,easy,train,2
+193,newsletter,뉴스레터,3720,3,1,0,hard,train,4
+194,newsletter,뉴스레터,4180,2,0,0,hard,train,0
+195,business,업무 메일,1060,0,0,0,easy,train,0
+196,business,업무 메일,1610,1,0,0,easy,test,0
+197,business,업무 메일,720,1,0,0,easy,train,2
+198,phishing,피싱 스팸,1270,2,1,1,hard,test,2
+199,newsletter,뉴스레터,1940,1,5,0,hard,train,3
+200,business,업무 메일,290,0,1,0,easy,test,0
+201,business,업무 메일,1820,1,1,0,easy,train,4
+202,newsletter,뉴스레터,4950,3,2,0,hard,test,6
+203,phishing,피싱 스팸,1480,3,3,1,hard,train,2
+204,ad_spam,광고 스팸,1200,6,5,1,easy,train,7
+205,business,업무 메일,1720,0,1,0,easy,test,0
+206,business,업무 메일,570,0,0,0,easy,test,0
+207,business,업무 메일,1550,1,0,0,easy,train,0
+208,newsletter,뉴스레터,4200,4,2,0,hard,train,7
+209,ad_spam,광고 스팸,580,5,8,1,easy,test,5
+210,newsletter,뉴스레터,3260,3,0,0,hard,train,2
+211,business,업무 메일,1720,2,1,0,easy,train,3
+212,newsletter,뉴스레터,3600,8,3,0,hard,test,7
+213,business,업무 메일,910,1,0,0,easy,train,0
+214,ad_spam,광고 스팸,1000,9,6,1,easy,train,9
+215,phishing,피싱 스팸,1820,3,3,1,hard,train,3
+216,business,업무 메일,2460,0,0,0,easy,train,0
+217,business,업무 메일,1080,1,1,0,easy,test,1
+218,newsletter,뉴스레터,4870,2,1,0,hard,train,2
+219,ad_spam,광고 스팸,610,7,9,1,easy,test,8
+220,newsletter,뉴스레터,4650,5,1,0,hard,train,4
+221,business,업무 메일,1100,1,0,0,easy,train,0
+222,business,업무 메일,1170,0,0,0,easy,train,1
+223,newsletter,뉴스레터,5570,3,1,0,hard,train,2
+224,business,업무 메일,330,1,0,0,easy,test,1
+225,business,업무 메일,2200,1,0,0,easy,train,0
+226,newsletter,뉴스레터,3630,5,3,0,hard,train,4
+227,business,업무 메일,1260,0,0,0,easy,train,0
+228,ad_spam,광고 스팸,200,6,8,1,easy,test,8
+229,newsletter,뉴스레터,6800,2,2,0,hard,test,1
+230,business,업무 메일,1220,1,0,0,easy,train,0
+231,newsletter,뉴스레터,3560,4,2,0,hard,train,4
+232,business,업무 메일,1550,0,0,0,easy,train,1
+233,ad_spam,광고 스팸,270,12,6,1,easy,train,11
+234,business,업무 메일,1350,1,0,0,easy,train,0
+235,newsletter,뉴스레터,3540,1,1,0,hard,train,2
+236,business,업무 메일,1090,1,0,0,easy,test,1
+237,newsletter,뉴스레터,1740,2,1,0,hard,train,0
+238,business,업무 메일,2050,1,0,0,easy,test,2
+239,phishing,피싱 스팸,2490,2,5,1,hard,test,2
+240,newsletter,뉴스레터,3860,7,0,0,hard,train,4
+241,newsletter,뉴스레터,4650,8,4,0,hard,train,8
+242,ad_spam,광고 스팸,200,7,5,1,easy,train,7
+243,newsletter,뉴스레터,2930,2,4,0,hard,train,3
+244,newsletter,뉴스레터,3070,4,1,0,hard,test,1
+245,newsletter,뉴스레터,3480,4,3,0,hard,train,7
+246,business,업무 메일,1820,0,1,0,easy,train,0
+247,phishing,피싱 스팸,1980,4,2,1,hard,test,2
+248,business,업무 메일,340,1,1,0,easy,train,2
+249,business,업무 메일,1040,0,0,0,easy,train,0
+250,ad_spam,광고 스팸,1070,4,5,1,easy,train,5
+251,business,업무 메일,650,0,1,0,easy,train,0
+252,business,업무 메일,1230,0,1,0,easy,test,0
+253,business,업무 메일,1340,1,1,0,easy,test,1
+254,newsletter,뉴스레터,4250,6,3,0,hard,train,5
+255,business,업무 메일,1720,3,0,0,easy,test,3
+256,business,업무 메일,1450,0,2,0,easy,train,0
+257,newsletter,뉴스레터,5510,3,1,0,hard,test,2
+258,business,업무 메일,1720,0,2,0,easy,train,1
+259,business,업무 메일,640,0,1,0,easy,train,1
+260,business,업무 메일,1880,1,0,0,easy,test,0
+261,business,업무 메일,1530,1,0,0,easy,train,0
+262,ad_spam,광고 스팸,390,5,4,1,easy,train,6
+263,ad_spam,광고 스팸,1050,6,6,1,easy,test,4
+264,ad_spam,광고 스팸,620,9,7,1,easy,train,8
+265,phishing,피싱 스팸,620,0,3,1,hard,train,1
+266,business,업무 메일,1120,0,1,0,easy,train,0
+267,ad_spam,광고 스팸,340,5,9,1,easy,train,7
+268,newsletter,뉴스레터,2350,3,0,0,hard,train,2
+269,newsletter,뉴스레터,5080,2,1,0,hard,train,3
+270,newsletter,뉴스레터,3600,4,2,0,hard,train,3
+271,ad_spam,광고 스팸,710,9,9,1,easy,train,9
+272,phishing,피싱 스팸,1280,1,2,1,hard,train,2
+273,phishing,피싱 스팸,1270,3,5,1,hard,train,1
+274,ad_spam,광고 스팸,770,7,8,1,easy,train,13
+275,business,업무 메일,710,0,0,0,easy,train,0
+276,business,업무 메일,1480,0,3,0,easy,train,0
+277,business,업무 메일,1250,0,0,0,easy,train,1
+278,business,업무 메일,2020,1,0,0,easy,train,1
+279,newsletter,뉴스레터,4390,4,1,0,hard,train,1
+280,ad_spam,광고 스팸,200,7,7,1,easy,test,9
+281,business,업무 메일,1330,0,0,0,easy,train,1
+282,ad_spam,광고 스팸,550,5,7,1,easy,test,6
+283,business,업무 메일,1110,0,1,0,easy,train,0
+284,newsletter,뉴스레터,3480,1,0,0,hard,train,1
+285,business,업무 메일,1130,1,0,0,easy,train,0
+286,phishing,피싱 스팸,2150,2,0,1,hard,train,2
+287,newsletter,뉴스레터,4560,7,2,0,hard,test,7
+288,business,업무 메일,1200,1,0,0,easy,train,0
+289,newsletter,뉴스레터,3480,2,1,0,hard,train,0
+290,business,업무 메일,1170,0,0,0,easy,test,0
+291,business,업무 메일,400,1,1,0,easy,train,0
+292,business,업무 메일,150,1,0,0,easy,train,2
+293,business,업무 메일,1690,0,0,0,easy,train,0
+294,newsletter,뉴스레터,4680,4,2,0,hard,train,5
+295,ad_spam,광고 스팸,1150,9,3,1,easy,train,8
+296,ad_spam,광고 스팸,590,10,12,1,easy,train,13
+297,business,업무 메일,1600,0,0,0,easy,train,0
+298,business,업무 메일,1030,2,0,0,easy,train,3
+299,business,업무 메일,720,0,0,0,easy,test,2
+300,newsletter,뉴스레터,2920,3,0,0,hard,train,2
+301,business,업무 메일,1160,0,1,0,easy,train,0
+302,ad_spam,광고 스팸,470,10,9,1,easy,test,11
+303,business,업무 메일,620,0,1,0,easy,train,0
+304,newsletter,뉴스레터,4280,2,1,0,hard,test,1
+305,business,업무 메일,980,0,0,0,easy,train,0
+306,newsletter,뉴스레터,5400,3,3,0,hard,train,3
+307,newsletter,뉴스레터,5320,3,0,0,hard,train,4
+308,business,업무 메일,1790,0,3,0,easy,test,1
+309,business,업무 메일,1220,1,3,0,easy,train,2
+310,phishing,피싱 스팸,1450,2,4,1,hard,train,4
+311,ad_spam,광고 스팸,560,10,6,1,easy,train,10
+312,ad_spam,광고 스팸,190,5,8,1,easy,train,9
+313,newsletter,뉴스레터,3460,3,2,0,hard,test,2
+314,phishing,피싱 스팸,1800,1,1,1,hard,train,0
+315,business,업무 메일,1250,1,1,0,easy,train,1
+316,business,업무 메일,1530,2,0,0,easy,train,1
+317,business,업무 메일,930,0,1,0,easy,train,0
+318,business,업무 메일,2260,0,0,0,easy,train,0
+319,newsletter,뉴스레터,3550,4,2,0,hard,test,2
+320,newsletter,뉴스레터,3350,4,2,0,hard,test,6
+321,phishing,피싱 스팸,1480,3,0,1,hard,train,2
+322,newsletter,뉴스레터,5060,5,0,0,hard,train,3
+323,newsletter,뉴스레터,4190,6,0,0,hard,train,4
+324,newsletter,뉴스레터,4540,5,0,0,hard,test,3
+325,business,업무 메일,1540,0,1,0,easy,train,0
+326,business,업무 메일,1810,0,0,0,easy,train,0
+327,newsletter,뉴스레터,3430,3,1,0,hard,train,1
+328,newsletter,뉴스레터,4340,3,1,0,hard,train,2
+329,newsletter,뉴스레터,5960,2,1,0,hard,test,1
+330,newsletter,뉴스레터,5140,3,4,0,hard,train,5
+331,business,업무 메일,1670,1,1,0,easy,test,3
+332,newsletter,뉴스레터,5480,1,0,0,hard,train,1
+333,business,업무 메일,1360,0,0,0,easy,train,1
+334,business,업무 메일,1350,0,1,0,easy,test,0
+335,business,업무 메일,1390,0,0,0,easy,train,1
+336,ad_spam,광고 스팸,400,4,10,1,easy,test,7
+337,ad_spam,광고 스팸,400,10,9,1,easy,test,12
+338,newsletter,뉴스레터,3580,3,1,0,hard,train,5
+339,newsletter,뉴스레터,5210,8,2,0,hard,train,4
+340,business,업무 메일,1810,1,1,0,easy,train,2
+341,business,업무 메일,640,0,0,0,easy,train,0
+342,phishing,피싱 스팸,2290,6,2,1,hard,train,6
+343,business,업무 메일,1440,2,0,0,easy,train,0
+344,ad_spam,광고 스팸,460,10,6,1,easy,train,9
+345,phishing,피싱 스팸,1410,5,2,1,hard,train,5
+346,business,업무 메일,1590,1,1,0,easy,test,2
+347,phishing,피싱 스팸,1480,4,3,1,hard,train,4
+348,business,업무 메일,1660,0,0,0,easy,test,0
+349,business,업무 메일,1510,0,0,0,easy,train,0
+350,business,업무 메일,1350,0,1,0,easy,train,2
+351,phishing,피싱 스팸,1150,1,0,1,hard,train,1
+352,business,업무 메일,1160,1,0,0,easy,train,0
+353,business,업무 메일,1700,0,0,0,easy,train,1
+354,phishing,피싱 스팸,1970,4,0,1,hard,test,4
+355,newsletter,뉴스레터,6420,7,2,0,hard,train,8
+356,business,업무 메일,1070,0,0,0,easy,train,0
+357,business,업무 메일,1960,1,0,0,easy,test,2
+358,phishing,피싱 스팸,2140,5,0,1,hard,train,3
+359,business,업무 메일,1510,0,0,0,easy,train,1
+360,newsletter,뉴스레터,2160,4,0,0,hard,test,3
+361,phishing,피싱 스팸,1960,0,1,1,hard,train,1
+362,phishing,피싱 스팸,1930,6,4,1,hard,train,8
+363,business,업무 메일,860,0,0,0,easy,test,0
+364,phishing,피싱 스팸,2200,1,2,1,hard,train,1
+365,business,업무 메일,570,1,0,0,easy,train,1
+366,newsletter,뉴스레터,3610,4,2,0,hard,train,6
+367,newsletter,뉴스레터,4050,6,2,0,hard,train,6
+368,phishing,피싱 스팸,2180,1,2,1,hard,train,0
+369,ad_spam,광고 스팸,340,9,10,1,easy,train,11
+370,business,업무 메일,1390,1,0,0,easy,train,2
+371,business,업무 메일,910,0,0,0,easy,train,3
+372,business,업무 메일,900,0,3,0,easy,train,0
+373,ad_spam,광고 스팸,390,3,4,1,easy,train,3
+374,ad_spam,광고 스팸,740,8,6,1,easy,test,10
+375,business,업무 메일,1790,0,1,0,easy,test,0
+376,business,업무 메일,1730,0,1,0,easy,train,0
+377,business,업무 메일,1790,0,0,0,easy,test,1
+378,business,업무 메일,1220,1,1,0,easy,train,3
+379,business,업무 메일,1150,1,0,0,easy,train,0
+380,newsletter,뉴스레터,4970,7,1,0,hard,train,7
+381,phishing,피싱 스팸,1880,2,1,1,hard,train,2
+382,newsletter,뉴스레터,5530,6,1,0,hard,train,7
+383,newsletter,뉴스레터,3800,4,2,0,hard,train,4
+384,phishing,피싱 스팸,660,3,3,1,hard,train,5
+385,phishing,피싱 스팸,1600,4,3,1,hard,train,3
+386,business,업무 메일,1920,1,1,0,easy,train,1
+387,ad_spam,광고 스팸,590,3,7,1,easy,train,5
+388,business,업무 메일,1030,0,0,0,easy,test,2
+389,ad_spam,광고 스팸,1070,6,9,1,easy,train,9
+390,newsletter,뉴스레터,5410,3,4,0,hard,train,3
+391,ad_spam,광고 스팸,930,10,6,1,easy,test,11
+392,business,업무 메일,830,0,1,0,easy,test,1
+393,business,업무 메일,1550,1,1,0,easy,train,1
+394,business,업무 메일,1060,0,0,0,easy,train,0
+395,business,업무 메일,330,0,1,0,easy,train,0
+396,newsletter,뉴스레터,3750,3,2,0,hard,train,1
+397,phishing,피싱 스팸,1710,3,4,1,hard,train,4
+398,ad_spam,광고 스팸,560,8,4,1,easy,train,8
+399,newsletter,뉴스레터,4940,4,1,0,hard,train,2
+400,business,업무 메일,1370,0,0,0,easy,train,1
+401,phishing,피싱 스팸,1360,1,2,1,hard,train,0
+402,ad_spam,광고 스팸,710,3,5,1,easy,test,3
+403,phishing,피싱 스팸,1730,2,2,1,hard,train,2
+404,newsletter,뉴스레터,3670,4,2,0,hard,train,7
+405,business,업무 메일,1450,1,0,0,easy,train,0
+406,business,업무 메일,630,1,1,0,easy,train,2
+407,newsletter,뉴스레터,2930,3,0,0,hard,train,4
+408,business,업무 메일,990,0,0,0,easy,train,1
+409,phishing,피싱 스팸,1400,2,1,1,hard,train,4
+410,business,업무 메일,1320,1,1,0,easy,train,0
+411,business,업무 메일,1590,2,0,0,easy,train,0
+412,business,업무 메일,1000,0,0,0,easy,train,1
+413,ad_spam,광고 스팸,850,8,5,1,easy,train,6
+414,ad_spam,광고 스팸,530,9,6,1,easy,train,9
+415,business,업무 메일,670,0,1,0,easy,test,0
+416,newsletter,뉴스레터,4400,0,1,0,hard,test,2
+417,phishing,피싱 스팸,1750,3,1,1,hard,train,4
+418,ad_spam,광고 스팸,930,6,8,1,easy,train,7
+419,ad_spam,광고 스팸,670,6,8,1,easy,train,9
+420,business,업무 메일,890,2,0,0,easy,test,2
+421,phishing,피싱 스팸,970,2,0,1,hard,train,1
+422,newsletter,뉴스레터,4540,3,1,0,hard,test,3
+423,business,업무 메일,1770,0,0,0,easy,test,0
+424,newsletter,뉴스레터,3250,5,2,0,hard,train,6
+425,newsletter,뉴스레터,3890,4,2,0,hard,train,4
+426,ad_spam,광고 스팸,150,4,9,1,easy,train,6
+427,phishing,피싱 스팸,2340,1,1,1,hard,train,3
+428,ad_spam,광고 스팸,980,8,9,1,easy,test,9
+429,ad_spam,광고 스팸,390,6,5,1,easy,train,7
+430,ad_spam,광고 스팸,710,5,10,1,easy,test,8
+431,business,업무 메일,1680,0,1,0,easy,train,2
+432,phishing,피싱 스팸,1110,3,4,1,hard,test,3
+433,business,업무 메일,1900,0,3,0,easy,test,3
+434,newsletter,뉴스레터,4920,2,2,0,hard,train,3
+435,ad_spam,광고 스팸,1050,6,9,1,easy,train,8
+436,phishing,피싱 스팸,1230,3,2,1,hard,train,2
+437,phishing,피싱 스팸,1650,3,3,1,hard,train,4
+438,ad_spam,광고 스팸,710,12,7,1,easy,test,12
+439,business,업무 메일,370,0,0,0,easy,train,0
+440,business,업무 메일,1540,0,0,0,easy,train,0
+441,business,업무 메일,1040,1,0,0,easy,train,0
+442,business,업무 메일,1690,1,2,0,easy,train,1
+443,business,업무 메일,1820,1,2,0,easy,train,3
+444,newsletter,뉴스레터,3690,5,1,0,hard,train,6
+445,business,업무 메일,1950,0,0,0,easy,test,1
+446,business,업무 메일,990,1,0,0,easy,train,1
+447,newsletter,뉴스레터,3950,4,0,0,hard,train,3
+448,newsletter,뉴스레터,2290,8,3,0,hard,train,8
+449,business,업무 메일,1550,1,1,0,easy,test,2
+450,phishing,피싱 스팸,1570,0,0,1,hard,train,3
+451,business,업무 메일,630,0,0,0,easy,train,1
+452,newsletter,뉴스레터,3060,5,2,0,hard,test,4
+453,ad_spam,광고 스팸,1390,10,9,1,easy,train,11
+454,newsletter,뉴스레터,3170,6,1,0,hard,train,4
+455,phishing,피싱 스팸,1230,4,3,1,hard,train,3
+456,ad_spam,광고 스팸,350,7,11,1,easy,train,9
+457,ad_spam,광고 스팸,750,4,4,1,easy,train,5
+458,newsletter,뉴스레터,4230,4,0,0,hard,train,6
+459,newsletter,뉴스레터,5340,2,2,0,hard,train,2
+460,business,업무 메일,880,1,0,0,easy,test,3
+461,newsletter,뉴스레터,5430,0,1,0,hard,train,3
+462,phishing,피싱 스팸,790,2,1,1,hard,train,2
+463,newsletter,뉴스레터,5210,4,1,0,hard,train,6
+464,business,업무 메일,800,1,0,0,easy,train,2
+465,business,업무 메일,1070,0,0,0,easy,train,0
+466,newsletter,뉴스레터,3930,2,1,0,hard,test,2
+467,business,업무 메일,1910,1,0,0,easy,train,1
+468,business,업무 메일,670,0,2,0,easy,train,0
+469,ad_spam,광고 스팸,370,3,9,1,easy,train,5
+470,business,업무 메일,1670,0,0,0,easy,train,0
+471,newsletter,뉴스레터,2410,5,4,0,hard,train,6
+472,ad_spam,광고 스팸,680,6,7,1,easy,train,6
+473,phishing,피싱 스팸,1770,1,2,1,hard,train,1
+474,phishing,피싱 스팸,930,1,3,1,hard,test,0
+475,newsletter,뉴스레터,3470,2,0,0,hard,train,2
+476,phishing,피싱 스팸,960,3,2,1,hard,train,4
+477,business,업무 메일,950,0,0,0,easy,test,0
+478,ad_spam,광고 스팸,750,4,6,1,easy,train,6
+479,business,업무 메일,560,1,1,0,easy,train,2
+480,business,업무 메일,680,1,0,0,easy,train,0
+481,ad_spam,광고 스팸,1040,10,7,1,easy,train,10
+482,business,업무 메일,1850,0,0,0,easy,train,1
+483,business,업무 메일,1850,1,0,0,easy,train,2
+484,newsletter,뉴스레터,4350,5,1,0,hard,test,5
+485,ad_spam,광고 스팸,570,8,5,1,easy,train,12
+486,business,업무 메일,1800,0,1,0,easy,train,0
+487,business,업무 메일,1120,2,1,0,easy,train,3
+488,business,업무 메일,1190,1,0,0,easy,test,3
+489,ad_spam,광고 스팸,590,10,7,1,easy,test,10
+490,ad_spam,광고 스팸,480,6,9,1,easy,test,7
+491,ad_spam,광고 스팸,560,6,12,1,easy,test,7
+492,business,업무 메일,1130,0,0,0,easy,train,0
+493,phishing,피싱 스팸,1770,3,1,1,hard,test,4
+494,business,업무 메일,680,1,0,0,easy,train,1
+495,business,업무 메일,1310,0,2,0,easy,train,1
+496,phishing,피싱 스팸,660,2,5,1,hard,test,3
+497,phishing,피싱 스팸,1670,2,2,1,hard,train,3
+498,business,업무 메일,1150,1,1,0,easy,train,0
+499,business,업무 메일,870,0,0,0,easy,train,0
+500,business,업무 메일,710,0,0,0,easy,train,0
+501,ad_spam,광고 스팸,1030,7,8,1,easy,train,6
+502,ad_spam,광고 스팸,1180,4,6,1,easy,train,8
+503,business,업무 메일,550,2,1,0,easy,test,0
+504,business,업무 메일,1510,0,1,0,easy,train,0
+505,newsletter,뉴스레터,3750,4,2,0,hard,train,2
+506,business,업무 메일,350,0,0,0,easy,train,2
+507,newsletter,뉴스레터,3550,2,3,0,hard,test,1
+508,newsletter,뉴스레터,4770,3,1,0,hard,test,4
+509,business,업무 메일,920,0,1,0,easy,train,1
+510,business,업무 메일,1560,1,1,0,easy,train,2
+511,ad_spam,광고 스팸,1090,5,4,1,easy,test,4
+512,newsletter,뉴스레터,5040,4,4,0,hard,train,4
+513,business,업무 메일,1020,0,1,0,easy,train,3
+514,business,업무 메일,840,1,0,0,easy,test,0
+515,business,업무 메일,1220,1,1,0,easy,train,0
+516,newsletter,뉴스레터,3030,5,1,0,hard,train,4
+517,business,업무 메일,1500,0,1,0,easy,train,1
+518,ad_spam,광고 스팸,420,8,7,1,easy,train,9
+519,ad_spam,광고 스팸,390,7,8,1,easy,test,9
+520,business,업무 메일,1780,0,1,0,easy,test,0
+521,ad_spam,광고 스팸,740,7,7,1,easy,train,9
+522,newsletter,뉴스레터,3580,7,2,0,hard,train,7
+523,business,업무 메일,1140,1,1,0,easy,train,0
+524,ad_spam,광고 스팸,580,4,6,1,easy,train,7
+525,business,업무 메일,1430,1,1,0,easy,test,4
+526,newsletter,뉴스레터,3520,10,1,0,hard,train,7
+527,business,업무 메일,1360,1,0,0,easy,test,1
+528,ad_spam,광고 스팸,460,6,10,1,easy,train,10
+529,business,업무 메일,1580,0,1,0,easy,train,0
+530,business,업무 메일,1110,0,1,0,easy,train,0
+531,business,업무 메일,1610,1,1,0,easy,train,0
+532,business,업무 메일,1440,0,2,0,easy,train,0
+533,ad_spam,광고 스팸,740,6,2,1,easy,train,5
+534,ad_spam,광고 스팸,650,7,12,1,easy,test,11
+535,business,업무 메일,1150,1,1,0,easy,train,2
+536,business,업무 메일,470,1,1,0,easy,train,0
+537,newsletter,뉴스레터,5370,3,1,0,hard,test,4
+538,phishing,피싱 스팸,1280,1,1,1,hard,train,4
+539,business,업무 메일,1370,0,0,0,easy,train,2
+540,newsletter,뉴스레터,2970,3,3,0,hard,train,5
+541,newsletter,뉴스레터,5340,6,0,0,hard,train,5
+542,business,업무 메일,1280,1,1,0,easy,train,3
+543,newsletter,뉴스레터,3600,5,1,0,hard,train,3
+544,business,업무 메일,980,0,0,0,easy,test,1
+545,business,업무 메일,1230,1,1,0,easy,test,1
+546,business,업무 메일,580,1,0,0,easy,train,2
+547,business,업무 메일,1220,0,0,0,easy,train,1
+548,ad_spam,광고 스팸,870,4,7,1,easy,train,4
+549,business,업무 메일,1630,3,1,0,easy,test,3
+550,business,업무 메일,770,0,0,0,easy,train,2
+551,phishing,피싱 스팸,1730,0,2,1,hard,train,0
+552,newsletter,뉴스레터,6030,7,1,0,hard,test,5
+553,business,업무 메일,1000,0,0,0,easy,train,0
+554,newsletter,뉴스레터,2870,3,2,0,hard,train,1
+555,phishing,피싱 스팸,1600,6,2,1,hard,train,7
+556,business,업무 메일,1570,0,0,0,easy,train,2
+557,phishing,피싱 스팸,2040,7,4,1,hard,train,8
+558,business,업무 메일,1460,1,0,0,easy,test,1
+559,business,업무 메일,340,0,0,0,easy,train,0
+560,business,업무 메일,560,1,0,0,easy,test,1
+561,newsletter,뉴스레터,4140,6,1,0,hard,train,4
+562,business,업무 메일,1790,1,1,0,easy,train,2
+563,business,업무 메일,1180,2,0,0,easy,test,3
+564,business,업무 메일,910,0,0,0,easy,train,1
+565,business,업무 메일,1090,2,0,0,easy,train,1
+566,business,업무 메일,1580,0,1,0,easy,test,0
+567,business,업무 메일,990,0,0,0,easy,train,0
+568,newsletter,뉴스레터,2570,3,0,0,hard,train,5
+569,ad_spam,광고 스팸,290,6,4,1,easy,train,6
+570,business,업무 메일,1240,0,1,0,easy,test,0
+571,business,업무 메일,1900,0,1,0,easy,train,1
+572,business,업무 메일,860,0,0,0,easy,train,3
+573,business,업무 메일,690,0,0,0,easy,train,1
+574,newsletter,뉴스레터,4510,5,1,0,hard,train,6
+575,business,업무 메일,1250,0,0,0,easy,train,0
+576,business,업무 메일,1370,1,1,0,easy,test,0
+577,phishing,피싱 스팸,2180,4,1,1,hard,test,1
+578,ad_spam,광고 스팸,640,6,11,1,easy,train,7
+579,newsletter,뉴스레터,5770,3,1,0,hard,test,3
+580,ad_spam,광고 스팸,1100,5,6,1,easy,train,7
+581,newsletter,뉴스레터,5720,3,3,0,hard,test,4
+582,business,업무 메일,950,1,1,0,easy,test,1
+583,newsletter,뉴스레터,4120,3,0,0,hard,test,4
+584,ad_spam,광고 스팸,410,9,4,1,easy,train,8
+585,newsletter,뉴스레터,3900,2,1,0,hard,train,1
+586,business,업무 메일,1530,1,1,0,easy,test,2
+587,business,업무 메일,2060,1,1,0,easy,train,0
+588,business,업무 메일,920,0,1,0,easy,test,0
+589,business,업무 메일,150,1,0,0,easy,train,0
+590,phishing,피싱 스팸,2040,2,1,1,hard,test,2
+591,business,업무 메일,150,0,0,0,easy,train,0
+592,phishing,피싱 스팸,1800,3,0,1,hard,test,2
+593,newsletter,뉴스레터,2720,2,5,0,hard,train,3
+594,ad_spam,광고 스팸,890,12,3,1,easy,train,9
+595,newsletter,뉴스레터,4460,3,4,0,hard,train,2
+596,business,업무 메일,730,0,1,0,easy,train,0
+597,business,업무 메일,680,0,0,0,easy,test,0
+598,business,업무 메일,1540,1,0,0,easy,train,3
+599,business,업무 메일,1360,0,1,0,easy,train,1
+600,business,업무 메일,620,1,0,0,easy,train,0
+601,newsletter,뉴스레터,4600,3,3,0,hard,train,2
+602,business,업무 메일,750,1,0,0,easy,train,2
+603,business,업무 메일,1650,1,0,0,easy,test,3
+604,ad_spam,광고 스팸,880,9,5,1,easy,train,9
+605,newsletter,뉴스레터,6540,2,4,0,hard,test,3
+606,business,업무 메일,1560,0,0,0,easy,train,3
+607,business,업무 메일,1020,1,0,0,easy,test,1
+608,newsletter,뉴스레터,3190,3,0,0,hard,train,2
+609,business,업무 메일,1400,0,0,0,easy,train,0
+610,business,업무 메일,490,0,0,0,easy,test,0
+611,business,업무 메일,1180,0,1,0,easy,train,3
+612,newsletter,뉴스레터,3320,3,1,0,hard,test,1
+613,business,업무 메일,770,0,0,0,easy,train,0
+614,phishing,피싱 스팸,1530,5,1,1,hard,train,2
+615,newsletter,뉴스레터,4440,4,1,0,hard,test,4
+616,business,업무 메일,990,0,1,0,easy,test,2
+617,newsletter,뉴스레터,1960,6,0,0,hard,train,4
+618,newsletter,뉴스레터,3100,3,1,0,hard,train,4
+619,business,업무 메일,1410,2,0,0,easy,train,3
+620,ad_spam,광고 스팸,940,7,7,1,easy,test,9
+621,ad_spam,광고 스팸,480,7,7,1,easy,train,10
+622,business,업무 메일,540,1,1,0,easy,test,2
+623,phishing,피싱 스팸,1260,1,1,1,hard,test,1
+624,business,업무 메일,1070,0,1,0,easy,train,0
+625,business,업무 메일,1320,0,1,0,easy,test,0
+626,business,업무 메일,870,0,0,0,easy,train,1
+627,newsletter,뉴스레터,3920,5,2,0,hard,train,4
+628,ad_spam,광고 스팸,340,11,1,1,easy,train,13
+629,business,업무 메일,1210,0,0,0,easy,train,3
+630,business,업무 메일,1320,0,0,0,easy,test,0
+631,ad_spam,광고 스팸,1040,5,8,1,easy,train,6
+632,ad_spam,광고 스팸,490,5,7,1,easy,train,9
+633,business,업무 메일,1420,1,0,0,easy,train,0
+634,business,업무 메일,930,0,0,0,easy,train,0
+635,newsletter,뉴스레터,5000,4,2,0,hard,train,5
+636,business,업무 메일,850,0,1,0,easy,train,0
+637,business,업무 메일,540,0,0,0,easy,test,0
+638,business,업무 메일,780,1,2,0,easy,train,1
+639,newsletter,뉴스레터,6370,4,0,0,hard,train,4
+640,newsletter,뉴스레터,3870,3,1,0,hard,train,3
+641,business,업무 메일,1200,1,0,0,easy,train,1
+642,business,업무 메일,1750,1,1,0,easy,train,2
+643,ad_spam,광고 스팸,600,6,11,1,easy,train,9
+644,phishing,피싱 스팸,1070,2,2,1,hard,train,4
+645,business,업무 메일,1080,0,0,0,easy,test,0
+646,business,업무 메일,1360,0,0,0,easy,test,0
+647,ad_spam,광고 스팸,720,4,12,1,easy,train,5
+648,ad_spam,광고 스팸,680,6,9,1,easy,train,6
+649,newsletter,뉴스레터,4610,3,2,0,hard,train,2
+650,newsletter,뉴스레터,3590,5,0,0,hard,train,5
+651,phishing,피싱 스팸,1740,1,1,1,hard,test,1
+652,ad_spam,광고 스팸,740,5,8,1,easy,train,6
+653,business,업무 메일,1320,1,0,0,easy,train,0
+654,phishing,피싱 스팸,1200,5,4,1,hard,test,5
+655,business,업무 메일,890,1,1,0,easy,train,1
+656,business,업무 메일,1880,1,0,0,easy,train,0
+657,newsletter,뉴스레터,2550,7,2,0,hard,test,4
+658,business,업무 메일,730,0,0,0,easy,train,0
+659,phishing,피싱 스팸,2070,6,3,1,hard,test,7
+660,ad_spam,광고 스팸,420,5,3,1,easy,train,2

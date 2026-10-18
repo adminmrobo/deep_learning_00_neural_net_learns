@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<script id="nn-i18n">(function(){var L=["ko","en","zh","ja","uz","ru"],P=["index.html", "1_perceptron.html", "2_activation.html", "3_cost_function.html", "4_normalization.html", "5_lab.html", "6_regions_probability.html", "answers.html"],cur="ko",K="nn_lang";
+var path=location.pathname.split("/"),last=path[path.length-1]||"",file="index.html",dir=location.href.split(/[?#]/)[0];dir=dir.slice(0,dir.lastIndexOf("/")+1);
+if(P.indexOf(last)>=0)file=last;else if(P.indexOf(last+".html")>=0)file=last+".html";else if(last&&last.indexOf(".")<0)dir=dir+last+"/";
+var root=cur==="ko"?dir:dir.replace(/[^\/]+\/$/,"");
+function url(l,f){return root+(l==="ko"?"":l+"/")+(f||file)}
+function tail(){return location.search.replace(/[?&]lang=[a-z]+/,"").replace(/^&/,"?")+location.hash}
+function has(u,cb){if(!/^https?:$/.test(location.protocol)){cb(true);return}try{fetch(u,{method:"HEAD",cache:"no-store"}).then(function(r){cb(r.status!==404&&r.status!==410)},function(){cb(true)})}catch(e){cb(true)}}
+function go(l,manual){if(l===cur)return;var u=url(l);has(u,function(ok){if(ok){location.replace(u+tail());return}
+if(manual){var i=url(l,"index.html");has(i,function(ok2){if(ok2)location.replace(i);else{alert("이 언어판 파일을 서버에서 찾지 못했습니다 / Language file not found on the server: "+url(l));var s=document.querySelector(".langsel");if(s)s.value=cur}})}
+else{try{localStorage.removeItem(K)}catch(e){}}})}
+window.nnSetLang=function(l){try{localStorage.setItem(K,l)}catch(e){}go(l,true)};
+var q=(location.search.match(/[?&]lang=([a-z]{2})/)||[])[1],s=null;try{s=localStorage.getItem(K)}catch(e){}
+if(q&&L.indexOf(q)>=0){try{localStorage.setItem(K,q)}catch(e){}go(q,true);return}
+if(s&&L.indexOf(s)>=0){go(s,false);return}
+var n=(navigator.language||"ko").slice(0,2).toLowerCase();if(L.indexOf(n)>=0)go(n,false);})();</script>
+<meta name="description" content="「신경망은 틀리면서 배운다」 확인 문제 정답과 채점 기준, 실험 과제 예시 답안, 강의 멘트">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>교육자용 정답 · 신경망은 틀리면서 배운다</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="교육자용 정답 · 신경망은 틀리면서 배운다">
+<meta property="og:description" content="「신경망은 틀리면서 배운다」 확인 문제 정답과 채점 기준, 실험 과제 예시 답안, 강의 멘트">
+<meta property="og:image" content="https://adminmrobo.github.io/Neural-net-learns/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=STIX+Two+Text:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#12131d;--panel:#1b1d2b;--panel2:#252839;--ink:#f1eff8;--ink-2:#bdbad3;--ink-3:#8f8caa;
+  --line:#383c55;--line-strong:#50556f;--accent:#b39dff;--accent-soft:rgba(179,157,255,.14);--amber:#b39dff;
+  --grid:rgba(255,255,255,.035);--a:#56b4e9;--b:#e69f00;--c3:#2fc49a;--c:#2fc49a;--lede:#d6d3e6;
+  --cp-f:#2a2450;--cp-s:#b39dff;--cp-t:#ece6ff;--ct-f:#153248;--ct-s:#56b4e9;--ct-t:#d6edfb;
+  --cc-f:#3b2a0b;--cc-s:#e69f00;--cc-t:#ffe3aa;--cg-f:#252839;--cg-s:#6f7290;--cg-t:#f1eff8;--ca-f:rgba(47,196,154,.16);--ca-t:#b9f0de;
+  --navbg:rgba(18,19,29,.92);color-scheme:dark;
+  --p:var(--ink);--s:var(--ink-2);
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --math:"STIX Two Text","Times New Roman",serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--paper:#f5f6f8;--panel:#ffffff;--panel2:#eef0f4;--ink:#141a24;--ink-2:#3f4a58;--ink-3:#6b7684;
+  --line:#d9dee5;--line-strong:#aab3bf;--accent:#6a4bd8;--accent-soft:#eeeafd;--amber:#6a4bd8;
+  --grid:rgba(20,26,36,.045);--a:#0072b2;--b:#d55e00;--c3:#009e73;--c:#009e73;--lede:#2d3743;
+  --cp-f:#eeeafd;--cp-s:#6a4bd8;--cp-t:#3a2590;--ct-f:#e3f1fa;--ct-s:#0072b2;--ct-t:#00406a;
+  --cc-f:#fdefd9;--cc-s:#d55e00;--cc-t:#7a3500;--cg-f:#f1f2f4;--cg-s:#8a8f98;--cg-t:#3d434c;--ca-f:#ddf3ec;--ca-t:#00563f;
+  --navbg:rgba(245,246,248,.94);color-scheme:light;}}
+:root[data-theme="light"]{--paper:#f5f6f8;--panel:#ffffff;--panel2:#eef0f4;--ink:#141a24;--ink-2:#3f4a58;--ink-3:#6b7684;
+  --line:#d9dee5;--line-strong:#aab3bf;--accent:#6a4bd8;--accent-soft:#eeeafd;--amber:#6a4bd8;
+  --grid:rgba(20,26,36,.045);--a:#0072b2;--b:#d55e00;--c3:#009e73;--c:#009e73;--lede:#2d3743;
+  --cp-f:#eeeafd;--cp-s:#6a4bd8;--cp-t:#3a2590;--ct-f:#e3f1fa;--ct-s:#0072b2;--ct-t:#00406a;
+  --cc-f:#fdefd9;--cc-s:#d55e00;--cc-t:#7a3500;--cg-f:#f1f2f4;--cg-s:#8a8f98;--cg-t:#3d434c;--ca-f:#ddf3ec;--ca-t:#00563f;
+  --navbg:rgba(245,246,248,.94);color-scheme:light;}
+:root[data-theme="dark"]{--paper:#12131d;--panel:#1b1d2b;--panel2:#252839;--ink:#f1eff8;--ink-2:#bdbad3;--ink-3:#8f8caa;
+  --line:#383c55;--line-strong:#50556f;--accent:#b39dff;--accent-soft:rgba(179,157,255,.14);--amber:#b39dff;
+  --grid:rgba(255,255,255,.035);--a:#56b4e9;--b:#e69f00;--c3:#2fc49a;--c:#2fc49a;--lede:#d6d3e6;
+  --cp-f:#2a2450;--cp-s:#b39dff;--cp-t:#ece6ff;--ct-f:#153248;--ct-s:#56b4e9;--ct-t:#d6edfb;
+  --cc-f:#3b2a0b;--cc-s:#e69f00;--cc-t:#ffe3aa;--cg-f:#252839;--cg-s:#6f7290;--cg-t:#f1eff8;--ca-f:rgba(47,196,154,.16);--ca-t:#b9f0de;
+  --navbg:rgba(18,19,29,.92);color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.78;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(14px,3vw,32px)}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.015em;word-break:keep-all}
+p{word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--accent)}
+nav.top{position:sticky;top:0;z-index:30;background:var(--navbg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav.top .wrap{display:flex;gap:2px;align-items:center;overflow-x:auto;height:54px;scrollbar-width:none}
+nav.top a{white-space:nowrap;color:var(--ink-2);text-decoration:none;font-size:14.5px;padding:6px 11px;border-radius:6px}
+nav.top a:hover{color:var(--ink);background:var(--panel2)}
+nav.top a.on{color:var(--ink);background:var(--panel2);box-shadow:inset 0 -3px 0 var(--accent)}
+nav.top .brand{color:var(--ink);font-weight:700;margin-right:auto;padding-left:0;display:flex;gap:10px;align-items:center}
+nav.top .brand:hover{background:none}
+.mark{width:22px;height:22px;flex:none;display:block}
+header.hero{position:relative;padding:56px 0 40px;overflow:hidden}
+header.hero .wrap{position:relative;z-index:1}
+.hero-bg{position:absolute;right:-40px;top:0;width:min(640px,70vw);height:100%;pointer-events:none;opacity:.5;-webkit-mask-image:radial-gradient(ellipse at 70% 40%,#000 0,transparent 72%);mask-image:radial-gradient(ellipse at 70% 40%,#000 0,transparent 72%)}
+.kicker{color:var(--accent);font-weight:700;font-size:15px;margin-bottom:10px}
+h1{font-size:clamp(32px,5vw,56px);line-height:1.15;max-width:16ch}
+.hero .lede{font-size:18.5px;color:var(--lede);margin:18px 0 0;max-width:60ch}
+.hero .guide{font-size:14px;color:var(--ink-2);margin:12px 0 0;max-width:64ch}
+section.part{padding:56px 0 24px;border-top:1px solid var(--line)}
+.part-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 22px;align-items:center;margin-bottom:26px}
+.part-no{grid-row:span 2;width:64px;height:73px;display:grid;place-items:center;background:var(--panel2);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);font-size:24px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.part-head h2{font-size:clamp(24px,3vw,34px);line-height:1.3}
+.part-head h2 .en{font-weight:400;color:var(--ink-3);font-size:.58em;margin-left:10px;letter-spacing:0;white-space:nowrap}
+.part-head p{grid-column:2;color:var(--ink-2);margin:0;max-width:72ch}
+.part-head .lin{display:inline-block;margin-left:10px;font-size:14px;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:0 8px;font-family:var(--math)}
+.block{margin:36px 0}
+.block>h3{font-size:19px;margin-bottom:12px}
+.lanes{display:grid;grid-template-columns:128px 1fr 128px;gap:0 18px;align-items:center;margin-bottom:12px}
+.lane{display:flex;align-items:stretch;gap:4px}
+.lane a{flex:1 1 0;display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:10px 12px;font-size:14px;min-height:70px;line-height:1.45}
+.lane a:hover{border-color:var(--accent)}
+.lane a b{display:block;font-size:15px;margin-bottom:2px}
+.lane a span{color:var(--ink-2);font-family:var(--math);font-size:14px}
+.lane .ar{align-self:center;color:var(--ink-3);font-size:12px;text-align:center;min-width:52px;line-height:1.3}
+.lane .ar::after{content:"›";display:block;font-size:18px;color:var(--ink-2)}
+.lane-tag{font-size:14px;font-weight:700;color:var(--b);margin:14px 0 6px}
+.lane-tag.b{color:var(--accent)}
+.start{border:1px solid var(--line);border-radius:10px;padding:14px;font-size:15px;text-align:center;background:var(--panel)}
+.end{border:2px solid var(--accent);border-radius:10px;padding:14px;font-size:15px;text-align:center}
+.start span,.end span{font-family:var(--math);color:var(--ink-2);white-space:nowrap}
+.code{font-variant-numeric:tabular-nums;font-size:15px;background:var(--panel2);border-radius:7px;padding:12px 16px;line-height:1.9;overflow-x:auto}
+footer{padding:40px 0 64px;color:var(--ink-2);font-size:14px;border-top:1px solid var(--line);margin-top:40px}
+footer p{margin:0 0 8px;max-width:90ch}
+@media (max-width:900px){.lanes{grid-template-columns:1fr;gap:10px}.lane{flex-direction:column}.lane .ar{min-width:0}.lane .ar::after{content:"⌄";font-size:14px}}
+.btn{background:var(--panel2);border:1px solid var(--line-strong);border-radius:7px;padding:6px 12px;font-size:14px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--ink-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:500}
+.btn.primary:hover{filter:brightness(1.08)}
+.easy{margin:14px 0 0;padding:12px 16px;background:var(--panel2);border-radius:8px;font-size:15px;max-width:none}
+.easy b{color:var(--amber);margin-right:6px}
+.read{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line)}
+.read h5{margin:0 0 10px;font-size:15px;font-weight:600}
+.read ol{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.read li{display:grid;grid-template-columns:230px minmax(0,1fr);gap:4px 16px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line)}
+.read li:first-child{border-top:0}
+.read .f{font-family:var(--math);font-size:17px;color:var(--accent)}
+.read .f sub,.read .f sup{font-size:.62em}
+.read .d{font-size:16px;color:var(--ink);line-height:1.7}
+.read .d sub,.read .d sup{font-size:.7em}
+.read .ex{margin-top:12px;padding:12px 16px;border-left:3px solid var(--amber);background:var(--panel2);border-radius:0 8px 8px 0;font-family:var(--math);font-size:16px;line-height:1.9;overflow-x:auto}
+.read .ex b{font-family:var(--sans);font-size:13px;color:var(--amber);display:block;line-height:1.4;margin-bottom:2px}
+.anim-intro{margin:0 0 12px;color:var(--ink-2);max-width:78ch}
+.anim-stage{border-radius:8px;overflow:hidden;background:var(--panel)}
+.anim-stage canvas{display:block;width:100%}
+.anim-ctl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:12px}
+.anim-cap{margin:12px 0 0;padding:12px 16px;border-left:3px solid var(--accent);background:var(--panel2);border-radius:0 8px 8px 0;font-size:16.5px;min-height:3.2em;line-height:1.65}
+.anim-steps{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none;counter-reset:a}
+.anim-steps li{counter-increment:a;font-size:14px;color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:3px 12px 3px 6px;display:flex;align-items:center;gap:6px;transition:background .2s,color .2s}
+.anim-steps li::before{content:counter(a);display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--panel2);font-size:11px}
+.anim-steps li.on{color:var(--ink);border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+.anim-steps li.on::before{background:var(--accent);color:var(--paper)}
+.anim-steps li{cursor:pointer}.anim-steps li:hover{border-color:var(--accent)}
+@media (max-width:640px){.read li{grid-template-columns:1fr}.read .f{white-space:normal}}
+[hidden]{display:none!important}
+.pc{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:var(--ink-2);flex-wrap:wrap}
+.pc input[type=range]{width:140px}
+.pc output{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);min-width:2.2em}
+.seg-b{font:inherit;font-size:14px;padding:5px 12px;border:1px solid var(--line-strong);background:var(--panel2);color:var(--ink);cursor:pointer;border-radius:0}
+.seg-b:first-of-type{border-radius:7px 0 0 7px}.seg-b:last-of-type{border-radius:0 7px 7px 0;margin-left:-1px}
+.seg-b[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:600}
+.anim-params{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;margin:0 0 12px;padding:10px 14px;border:1px dashed var(--line-strong);border-radius:8px}
+.anim-ctl .sep{width:1px;height:26px;background:var(--line);margin:0 4px}
+.quiz .q{padding:14px 0;border-top:1px solid var(--line)}
+.quiz .q:first-of-type{border-top:0;padding-top:0}
+.quiz .qt{margin:0 0 10px;font-size:16.5px;font-weight:600}
+.quiz .opts{display:flex;flex-wrap:wrap;gap:8px}
+.quiz .opts button{font:inherit;font-size:15px;text-align:left;padding:8px 14px;border-radius:8px;border:1px solid var(--line-strong);background:var(--panel2);color:var(--ink);cursor:pointer}
+.quiz .opts button:hover{border-color:var(--accent)}
+.quiz .opts button.ok{border-color:var(--a);background:var(--ct-f);color:var(--ct-t);font-weight:600}
+.quiz .opts button.no{border-color:var(--b);background:var(--cc-f);color:var(--cc-t);text-decoration:line-through}
+.quiz .fb{margin:10px 0 0;font-size:15.5px;min-height:0}
+.quiz .fb b{margin-right:6px}
+.struct{width:100%;border-collapse:collapse;font-size:15px;margin-top:6px}
+.struct th,.struct td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.struct th{color:var(--ink-2);font-weight:600;font-size:14px}
+.codebox{position:relative;background:var(--panel2);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.codebox pre{margin:0;padding:18px 20px;overflow:auto;max-height:520px;font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,"D2Coding",monospace;font-size:14px;line-height:1.6;color:var(--ink);tab-size:4}
+.codebox .copy{position:absolute;top:10px;right:10px}
+.pick{width:100%;border-collapse:collapse;font-size:15.5px}
+.pick th,.pick td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.pick th{background:var(--panel2);font-size:14px;color:var(--ink-2)}
+.pick td b{white-space:nowrap}
+@media (max-width:640px){.eq{white-space:normal;font-size:20px}.card{padding:18px 16px}.read li{grid-template-columns:1fr}.pc input[type=range]{width:110px}}
+.glossary{margin-top:40px}
+.gl-intro{color:var(--ink-2);max-width:72ch;margin:0 0 18px}
+.gl-group h4{margin:22px 0 10px;font-size:16px;color:var(--accent)}
+.gl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.gl-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;scroll-margin-top:80px}
+.gl-card:target{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.gl-card b{font-size:16.5px;display:block;margin-bottom:6px}
+.gl-card p{margin:6px 0 0;font-size:15px;line-height:1.6}
+.gl-card p span,.tip p span{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:0 6px;margin-right:6px;vertical-align:1px}
+.gl-an span{background:var(--accent);color:var(--paper)}
+.gl-mean span{background:var(--panel2);color:var(--ink-2);border:1px solid var(--line)}
+.gl-mean{color:var(--ink-2)}
+.term,.term-demo{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:help;text-decoration:underline dotted var(--accent);text-decoration-thickness:2px;text-underline-offset:4px;line-height:inherit}
+.term:hover,.term:focus-visible,.term[aria-expanded="true"]{color:var(--accent)}
+.tip{position:fixed;z-index:60;max-width:min(360px,calc(100vw - 24px));background:var(--panel);border:1px solid var(--accent);border-radius:10px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.35);font-size:15px;line-height:1.6}
+.tip b{display:block;font-size:16px;margin-bottom:4px}
+.tip p{margin:6px 0 0}
+.tip .gl-mean{color:var(--ink-2)}
+.tip a{display:inline-block;margin-top:8px;font-size:13px}
+.eq,.problem-eq,.hero-eq{text-align:center}
+.eq .cap{text-align:center;margin-top:4px}
+
+.hero-art{width:100%;height:auto;display:block;margin:0 0 26px;max-width:1100px}
+.fishcard{border:2px solid var(--accent)}
+.fishcard .lbl .no{background:var(--a)}
+.fish-res{margin:10px 0 0;padding:10px 14px;background:var(--panel2);border-radius:8px;font-size:15.5px;line-height:1.6}
+.fish-why{margin:12px 0 0;max-width:76ch;font-size:16px}
+.fishcard canvas{display:block;width:100%;max-width:640px}
+.fish-tbl{width:100%;border-collapse:collapse;font-size:15px}
+.fish-tbl th,.fish-tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+.fish-tbl th{background:var(--panel2);font-size:13.5px;color:var(--ink-2)}
+.fish-tbl td.n{text-align:right;font-variant-numeric:tabular-nums}
+.fish-tbl tr.on td{background:var(--accent-soft);font-weight:700}
+.t3-tbl .fish-tbl th:nth-child(n+2){text-align:right}
+.fish-tbl td.up{color:var(--a);font-weight:700}.fish-tbl td.dn{color:var(--b);font-weight:700}
+svg.fishsvg{width:100%;max-width:560px;display:block;margin:6px 0}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:6px}
+.tile{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--panel)}
+.tile:hover{border-color:var(--accent)}
+.tile.best{border:2px solid var(--accent)}
+.tile canvas{display:block;width:100%;border-radius:6px}
+.tile .tn{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font-size:14px;font-weight:700}
+.tile .tacc{font-variant-numeric:tabular-nums;color:var(--accent)}
+#t3d canvas{display:block;width:100%;max-width:760px;cursor:grab;border-radius:8px;background:var(--panel2)}
+.t3-tbl{margin-top:14px}
+.qfish{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
+.problem-eq{font-family:var(--math);font-size:22px;padding:12px 16px;background:var(--panel2);border-radius:8px;margin:10px 0;overflow-x:auto}
+@media (max-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.qfish{grid-template-columns:1fr}}
+.dlbar{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--panel)}
+.dlbar .btn{font-size:13.5px;padding:5px 11px}
+.codebox .copy{top:auto;bottom:10px}
+.promptbox{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel2)}
+.prompt-pre{margin:0;padding:16px 18px;max-height:460px;overflow:auto;white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,"D2Coding",monospace;font-size:13.5px;line-height:1.65;color:var(--ink)}
+.thanks{padding:56px 0 30px;border-top:1px solid var(--line)}
+.thanks-wrap{display:flex;align-items:flex-end;justify-content:center;gap:28px;flex-wrap:wrap}
+.thanks img{width:min(300px,70vw);height:auto;image-rendering:pixelated;display:block}
+.bubble{position:relative;max-width:420px;background:var(--panel);border:4px solid var(--ink);padding:18px 22px;margin-bottom:120px;box-shadow:8px 8px 0 var(--accent)}
+.bubble::before{content:"";position:absolute;left:-20px;bottom:24px;width:16px;height:16px;background:var(--ink);box-shadow:-8px 8px 0 var(--ink)}
+.bubble .b1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em}.bubble .b2{margin:8px 0 0;font-size:15px;color:var(--ink-2)}
+@media (max-width:700px){.bubble{margin-bottom:0}.bubble::before{display:none}}
+.sp-tbl td{vertical-align:middle}.sp-tbl svg{display:block}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.sdp{border:2px solid var(--line);border-radius:12px;padding:14px}
+.sdp.bad{border-color:var(--b)}.sdp.good{border-color:var(--a)}
+.sdp h5{margin:0 0 8px;font-size:16px}.sdp .tag{display:inline-block;font-size:12.5px;font-weight:700;padding:1px 8px;border-radius:5px;margin-right:6px;color:var(--paper)}
+.sdp.bad .tag{background:var(--b)}.sdp.good .tag{background:var(--a)}
+.sd-row{display:grid;grid-template-columns:64px 1fr;gap:8px;align-items:center;font-size:13.5px;margin:6px 0}
+.cbar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--panel2)}.cbar i{display:block}.cnum{grid-column:2;font-size:12.5px}
+.sd-acc{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+.sdp canvas{display:block;width:100%;border-radius:8px;margin-top:8px}
+@media (max-width:760px){.split2{grid-template-columns:1fr}}
+.note-box{margin:12px 0;padding:12px 16px;border:1px dashed var(--line-strong);border-radius:8px;font-size:15.5px}
+ul.plain{margin:0;padding-left:18px}ul.plain li{margin:0 0 8px}
+.sp-tbl th{white-space:nowrap}
+.note-box a,footer a{overflow-wrap:anywhere;word-break:break-all}.grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px}
+.span{grid-column:1/-1}
+.card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 26px}
+.lbl{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--ink);margin:0 0 14px;letter-spacing:-.005em}
+.lbl .no{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--paper);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.model-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start}
+.model-row p{margin:0;font-size:18px;max-width:60ch;line-height:1.7}
+.facts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.fact{border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:13px;line-height:1.35;min-width:120px}
+.fact span{display:block;color:var(--ink-3);font-size:12px}
+.eq{font-family:var(--math);font-size:23px;line-height:1.6;padding:14px 18px;background:var(--panel2);border-radius:8px;overflow-x:auto;white-space:nowrap}
+.eq + .eq{margin-top:10px}
+.eq .cap{display:block;font-family:var(--sans);font-size:12px;color:var(--ink-3);white-space:normal;line-height:1.4}
+.eq sub,.eq sup{font-size:.62em}
+.sym{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:15px;color:var(--ink-2)}
+.sym dt{font-family:var(--math);color:var(--ink);font-size:16px}
+.sym dd{margin:0}
+.diagram{background-color:var(--panel);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px;border-radius:8px;overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:520px;height:auto}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:10px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+.prose p{margin:0 0 14px;max-width:66ch;font-size:16.5px}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:600}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.feat h5{margin:0 0 8px;font-size:15px;font-weight:700}
+.feat ul{margin:0;padding:0;list-style:none}
+.feat li{position:relative;padding:8px 0 8px 22px;border-top:1px solid var(--line);font-size:16px}
+.feat li:first-child{border-top:0}
+.feat .pro li::before{content:"+";position:absolute;left:2px;color:var(--a);font-weight:600}
+.feat .con li::before{content:"−";position:absolute;left:3px;color:var(--b);font-weight:600}
+.usecase{margin-top:16px;font-size:15px;color:var(--ink-2)}
+svg .t{font-family:var(--sans);font-size:15px;fill:var(--ink)}
+svg .ts{font-family:var(--sans);font-size:13.5px;fill:var(--ink-2)}
+svg .th{font-family:var(--sans);font-size:15px;font-weight:600;fill:var(--ink)}
+svg .box{fill:var(--panel);stroke:var(--line-strong);stroke-width:.8}
+svg .arr{stroke:var(--ink-2);stroke-width:1.3;fill:none}
+svg .c-purple>rect,svg .c-purple>circle{fill:var(--cp-f);stroke:var(--cp-s)}
+svg .c-purple>text{fill:var(--cp-t)}
+svg .c-teal>rect,svg .c-teal>circle{fill:var(--ct-f);stroke:var(--ct-s)}
+svg .c-teal>text{fill:var(--ct-t)}
+svg .c-coral>rect,svg .c-coral>circle{fill:var(--cc-f);stroke:var(--cc-s)}
+svg .c-coral>text{fill:var(--cc-t)}
+svg .c-gray>rect,svg .c-gray>circle{fill:var(--cg-f);stroke:var(--cg-s)}
+svg .c-gray>text{fill:var(--cg-t)}
+.deep{margin-top:48px;padding:32px 0 0;border-top:3px solid var(--accent)}
+.deep>h3{margin:0 0 6px;font-size:24px;font-weight:600;letter-spacing:-.01em}
+.deep>.sub{margin:0 0 22px;color:var(--ink-2);max-width:70ch}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.vs>div{padding:18px 20px}
+.vs>div+div{border-left:1px solid var(--line)}
+.vs h5{margin:0 0 4px;font-size:15px;font-weight:600}
+.vs .eq{font-size:20px;margin:8px 0 12px}
+.vs ul{margin:0;padding-left:18px;font-size:15px}
+.vs li{margin:4px 0}
+.keyline{margin:16px 0 0;padding:14px 18px;border-left:3px solid var(--accent);background:var(--accent-soft);font-size:16px;border-radius:0}
+.lab.stack{grid-template-columns:minmax(0,1fr)}
+.lab.stack .diagram{max-width:640px}
+.lab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.ctl{display:grid;grid-template-columns:72px 1fr 52px;align-items:center;gap:10px;font-size:14px;margin:6px 0}
+.ctl label{font-family:var(--math);font-size:16px}
+.ctl output{font-variant-numeric:tabular-nums;text-align:right}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{position:relative;padding:12px 0 12px 40px;border-top:1px solid var(--line)}
+.steps li:first-child{border-top:0}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:12px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--panel);display:grid;place-items:center;font-size:13px;font-weight:500}
+.steps .what{font-size:13px;color:var(--ink-2);display:block}
+.calc{font-family:var(--math);font-size:18px;line-height:1.7;font-variant-numeric:tabular-nums;overflow-x:auto;white-space:nowrap}
+.calc .hl{color:var(--accent)}
+.calc .pos{color:var(--a)}.calc .neg{color:var(--b)}
+.result{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:6px;font-family:var(--sans);font-size:14px;font-weight:600}
+.result.A{background:var(--ct-f);color:var(--ct-t)}.result.B{background:var(--cc-f);color:var(--cc-t)}.result.C{background:var(--ca-f);color:var(--ca-t)}
+.mat{display:inline-flex;align-items:center;gap:6px;font-family:var(--math);font-size:16px;vertical-align:middle}
+.mat table{border-collapse:collapse;border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);border-radius:3px}
+.mat td{padding:1px 8px;text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:3px}
+.bar i{display:block;height:100%}
+table.cmp{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table.cmp th,table.cmp td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp th{font-weight:600;background:var(--panel2);font-size:13px;color:var(--ink-2)}
+table.cmp td:first-child{font-weight:600;white-space:nowrap}
+table.cmp td.m{font-family:var(--math);font-size:15px;white-space:nowrap}
+.tblwrap{overflow-x:auto}
+.hero-eq{font-family:var(--math);font-size:clamp(30px,5vw,54px);line-height:1.2;margin:8px 0 6px;letter-spacing:-.01em}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px}
+.three .card h5{margin:0 0 6px;font-size:16px;font-weight:600}
+.three .card p{margin:0;font-size:15px;color:var(--ink-2)}
+.three .card .q{font-family:var(--math);font-size:17px;color:var(--ink);margin-bottom:6px}
+.map{margin-top:24px}
+.mlane{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:10px 0 20px}
+.mlane .tag{font-size:13px;color:var(--ink-2);width:100%;margin-bottom:8px}
+.chip{border:1px solid var(--line-strong);background:var(--panel);border-radius:8px;padding:8px 14px;font-size:15px;cursor:pointer;color:var(--ink);text-decoration:none}
+.chip:hover{border-color:var(--accent)}
+.link{display:flex;flex-direction:column;align-items:center;padding:0 6px;font-size:12px;color:var(--accent);line-height:1.2;min-width:74px;text-align:center}
+.link::after{content:"";display:block;width:100%;height:1px;background:var(--accent);margin-top:4px}
+.note{font-size:13px;color:var(--ink-3);margin-top:10px}
+select{border:1px solid var(--line-strong);border-radius:6px;padding:4px 8px;background:var(--panel)}
+@media (max-width:1020px){
+  .part-no{width:48px;height:55px;font-size:18px}
+  .part-head h2 .en{white-space:normal;display:block;margin-left:0}
+  .part-head p{grid-column:1/-1}
+  .grid,.lab,.feat,.vs,.three,.model-row{grid-template-columns:minmax(0,1fr)}
+  .vs>div+div{border-left:0;border-top:1px solid var(--line)}
+  .facts{justify-content:flex-start}
+}
+@media (max-width:560px){nav.top .brand span{display:none}}
+.fish-tbl th{white-space:nowrap}
+@media (max-width:560px){.fish-tbl th,.fish-tbl td{padding:8px 6px}}
+.src{font-size:13.5px;color:var(--ink-3);margin:10px 0 0;line-height:1.6}
+.seg-b+.seg-b{margin-left:-1px}
+.seg-b:not(:first-of-type):not(:last-of-type){border-radius:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{font:inherit;font-size:14.5px;padding:6px 14px;border-radius:999px;border:1px solid var(--line-strong);background:var(--panel2);color:var(--ink);cursor:pointer}
+.pills button:hover{border-color:var(--accent)}
+.pills button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:600}
+#afinfo .sym{grid-template-columns:auto 1fr}
+.three .card h5{color:var(--accent)}
+.nlab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}.nlab>div{min-width:0}
+.nlab h5{margin:0 0 8px;font-size:15px}
+table.nmx{border-collapse:separate;border-spacing:4px;font-variant-numeric:tabular-nums}
+table.nmx th{font-size:12.5px;font-weight:500;color:var(--ink-3);padding:0 4px;white-space:nowrap;text-align:center}
+table.nmx td{padding:0}
+table.nmx td.g0{box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--c3) 60%,transparent)}
+table.nmx td.g1{box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--b) 60%,transparent)}
+table.nmx td.g2{box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--a) 60%,transparent)}
+.cell{display:grid;place-items:center;width:46px;height:38px;border-radius:6px;border:1px solid var(--line);background:var(--panel2);font:inherit;font-size:15px;color:var(--ink);cursor:pointer;padding:0}
+.cell:disabled{cursor:not-allowed;opacity:.4}
+.cell.out{cursor:default;font-size:13.5px;background:var(--panel2)}
+.cell.ref{border:2px solid var(--accent);background:var(--accent-soft);font-weight:600}
+.cell.sel{outline:3px solid var(--ink);outline-offset:1px}
+@media (max-width:900px){.nlab{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:420px){.cell{width:38px;height:34px;font-size:13.5px}.cell.out{font-size:12px}}
+
+.series{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.series a{font-size:13.5px;padding:3px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2);text-decoration:none;background:var(--panel)}
+.series a:hover{border-color:var(--accent);color:var(--ink)}
+.series a.on{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:700}
+.byline{margin:14px 0 0;font-size:14.5px;color:var(--ink-2)}
+.hero h1{max-width:22ch;overflow-wrap:anywhere}
+.three .card h5 a{color:inherit}
+.sb{margin-top:12px}
+.sbr{display:grid;grid-template-columns:44px minmax(0,1fr) 54px;gap:8px;align-items:center;font-size:14px;margin:8px 0}
+.sbr output{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+.sbt{position:relative;height:16px;background:var(--panel2);border-radius:8px}
+.sbt i{position:absolute;left:0;top:0;bottom:0;display:block;border-radius:8px;background:var(--accent)}
+.sbr.te .sbt i{background:var(--c3)}
+.sbt b{position:absolute;top:-5px;bottom:-5px;width:3px;margin-left:-1px;background:var(--ink);border-radius:2px}
+.sbt.mid::after{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1px;background:var(--ink-3)}
+.wbar{grid-template-columns:76px minmax(0,1fr) 54px}
+.sbn{margin:6px 0 0;font-size:14px;color:var(--ink-2);line-height:1.6}
+.plab{font-variant-numeric:tabular-nums;font-size:14px;color:var(--ink-2);min-width:6.5em}
+.anim-ctl input[type=range]{width:auto}
+.cvt{margin:0 0 6px;font-size:14.5px;font-weight:600;color:var(--ink-2)}
+.codetabs .pills{margin-bottom:10px}
+.codepre{margin:0;padding:16px 18px;max-height:480px;overflow:auto;font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,"D2Coding",monospace;font-size:13.5px;line-height:1.6;color:var(--ink);tab-size:4;white-space:pre}
+.runres{margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--panel)}
+.runres summary{cursor:pointer;font-size:14.5px;color:var(--ink-2)}
+.runres pre{margin:10px 0 0;overflow:auto;font-size:13px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;background:var(--panel2);padding:1px 5px;border-radius:4px}
+.teach-link{margin:0 0 16px;padding:12px 16px;border:1px solid var(--accent);border-radius:10px;background:var(--accent-soft);font-size:15.5px}
+.author p{margin:6px 0 0;max-width:72ch}
+.outro-list{margin:10px 0 0;padding-left:20px;font-size:15px;color:var(--ink)}
+.outro-list li{margin:0 0 6px}
+.outro-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.outro-nav a{font-size:14px;text-decoration:none;border:1px solid var(--line-strong);border-radius:8px;padding:6px 12px;color:var(--ink);background:var(--panel2)}
+.outro-nav a.nx{background:var(--accent);border-color:var(--accent);color:var(--paper);font-weight:600}
+.thanks .bubble{max-width:520px}
+.thanks .bubble .nq{margin:12px 0 0;font-size:14.5px;color:var(--accent);font-weight:600}
+.cc{display:inline-block;font-size:12.5px;font-weight:700;border:1.5px solid var(--ink-2);border-radius:5px;padding:1px 7px;color:var(--ink);text-decoration:none;margin-right:8px}
+.dials{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px 22px}
+.dial{display:flex;flex-direction:column;gap:6px}
+.dial .dl{font-size:14px;font-weight:600;color:var(--ink-2)}
+.custgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 22px;margin:4px 0 6px}
+.custgrid h5{margin:0 0 4px;font-size:14.5px}
+.custgrid .ctl{grid-template-columns:62px 1fr 44px;font-size:13.5px}
+.custgrid .ctl label{font-family:var(--sans);font-size:13.5px}
+.logtbl td,.logtbl th{white-space:nowrap;font-size:13.5px;padding:6px 8px}
+.logtbl td.chg{background:color-mix(in srgb,var(--b) 24%,transparent);font-weight:700}
+.tasks li{line-height:1.65;font-size:15.5px}
+.ans-grid{display:grid;gap:14px}
+@media (max-width:900px){.custgrid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.dials{grid-template-columns:minmax(0,1fr)}.sbr{grid-template-columns:40px minmax(0,1fr) 50px}}
+.part-head h2{overflow-wrap:anywhere}
+.three-cv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:12px}
+.cvs{margin:8px 0 0;font-size:14px;line-height:1.6}
+.kind-svg{display:block;width:100%;height:auto;margin:6px 0 10px}
+.three .card p.kq{font-size:13.5px;color:var(--accent);margin-top:8px}
+.three .card p b{color:var(--ink)}
+.sm{font-size:13.5px;color:var(--ink-2)}
+.coin{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;font-family:var(--sans);font-size:14px;margin:8px 0}
+.coin .cbar{height:16px}
+.two-way{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.two-way .tw{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--panel2)}
+.two-way h5{margin:0 0 6px;font-size:15px;color:var(--accent)}.two-way p{margin:4px 0;font-size:15px}
+.two-way .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}.two-way .big span{font-size:16px;color:var(--ink-2);font-weight:500}
+.ent-tbl td.n{text-align:right}
+@media (max-width:900px){.three-cv,.two-way{grid-template-columns:minmax(0,1fr)}}
+#xor-tbl th,#xor-tbl td{text-align:center}
+.chat{display:grid;gap:10px;margin:18px 0 0;max-width:760px}
+.say{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;align-items:start}
+.say .av{width:56px;height:56px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid var(--line-strong)}
+.say.haru .av{border-color:#e48aa8}.say.robo .av{border-color:var(--accent)}
+.robo-w{margin:10px 0 0}.robo-w .sbub p{font-size:15px}.say.doc .av{border-color:var(--a)}.say.fly .av{border-color:var(--c3)}
+.sbub{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 14px}
+.sbub::before{content:"";position:absolute;left:-7px;top:18px;width:12px;height:12px;background:inherit;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+.sbub b{display:block;font-size:13px;color:var(--ink-2);margin-bottom:2px}
+.sbub p{margin:0;font-size:15.5px;line-height:1.6}
+.part .chat{margin:0 0 20px}
+.outro{padding:56px 0 36px;border-top:1px solid var(--line)}
+.outro .ot{font-size:clamp(24px,3vw,32px);margin:0 0 18px}
+.outro-grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:28px;align-items:start}
+.oimg{width:100%;height:auto;border-radius:14px;display:block}
+.outro .chat{margin:0}
+.outro-list{margin:6px 0 0;padding-left:20px;font-size:15px}
+@media (max-width:760px){.outro-grid{grid-template-columns:minmax(0,1fr)}}
+
+.ans{padding:40px 0 20px;border-top:1px solid var(--line)}
+.qa{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:0 0 12px}
+.qa .qn{font-weight:700;margin:0 0 8px;font-size:16px}
+.qa ol{margin:0 0 8px;padding-left:0;list-style:none}.qa li{margin:2px 0;font-size:15px}
+.qa li.ok{color:var(--a);font-weight:700}
+.qa p{margin:6px 0 0;font-size:15px}
+.qa .tagx{display:inline-block;font-size:12.5px;font-weight:700;border-radius:4px;padding:0 6px;margin-right:6px;background:var(--panel2);border:1px solid var(--line)}
+.ment{width:100%;border-collapse:collapse;font-size:15px;margin:6px 0 16px}.ment th,.ment td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}.ment th{width:56px;color:var(--ink-2);font-size:14px}
+.back{font-size:14px}
+</style>
+<style id="nn-i18n-css">.langsel{margin-left:6px;font:inherit;font-size:13.5px;padding:4px 6px;border-radius:6px;border:1px solid var(--line-strong);background:var(--panel);color:var(--ink);flex:none}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs></svg>
+<nav class="top" aria-label="목차"><div class="wrap"><a class="brand" href="index.html"><svg class="mark" viewBox="0 0 22 22" aria-hidden="true"><circle cx="5" cy="6" r="2.4" fill="var(--a)"/><circle cx="5" cy="16" r="2.4" fill="var(--b)"/><circle cx="16" cy="11" r="4.2" fill="none" stroke="var(--accent)" stroke-width="1.6"/><line x1="7.4" y1="6.8" x2="12" y2="9.6" stroke="var(--ink-2)" stroke-width="1.2"/><line x1="7.4" y1="15.2" x2="12" y2="12.4" stroke="var(--ink-2)" stroke-width="1.2"/></svg><span>신경망 배우기</span></a><a href="#a1">1 퍼셉트론</a><a href="#a2">2 활성화 함수</a><a href="#a3">3 비용 함수</a><a href="#a4">4 정규화</a><a href="#a5">5 실험실</a><a href="#a6">6 영역과 확률</a><select class="langsel" aria-label="Language" onchange="nnSetLang(this.value)"><option value="ko" selected>한국어</option><option value="en">English</option><option value="zh">中文</option><option value="ja">日本語</option><option value="uz">O'zbekcha</option><option value="ru">Русский</option></select></div></nav><header class="hero" id="top"><div class="wrap"><nav class="series" aria-label="시리즈"><a href="index.html">처음 화면</a><a href="1_perceptron.html">1 퍼셉트론</a><a href="2_activation.html">2 활성화 함수</a><a href="3_cost_function.html">3 비용 함수</a><a href="4_normalization.html">4 정규화</a><a href="5_lab.html">5 실험실</a><a href="6_regions_probability.html">6 영역과 확률</a></nav><div class="kicker">신경망은 틀리면서 배운다</div><h1>교육자용 정답</h1>
+<p class="lede">학습자는 각 편의 문제를 먼저 풀고 나서 확인하세요. 강사는 수업에 맞게 배점과 멘트를 조정해 쓰면 됩니다. 실행 결과 숫자는 Python 3 · scikit-learn 1.9에서 실제로 실행한 값입니다.</p></div></header>
+<section class="ans" id="a1"><div class="wrap"><div class="part-head"><div class="part-no">1</div><h2>퍼셉트론 — 곱하고, 더하고, 틀리면 고친다</h2><p><a class="back" href="1_perceptron.html#author-sec">1편 페이지의 교육자 안내로 돌아가기</a></p></div><p>확인 문제 6개 · 문제당 2점 (총 12점). 정답 + 이유 한 문장 = 2점, 정답만 = 1점, 오답이어도 핵심 이유를 말하면 1점.</p><div class="qa"><p class="qn">문제 1 &nbsp;퍼셉트론이 예측을 맞혔을 때 가중치는?</p><ol><li class="">① 조금 커진다</li><li class="">② 조금 작아진다</li><li class="ok">③ 바뀌지 않는다 ✔ 정답</li></ol><p><span class="tagx">해설</span>맞히면 y − ŷ = 0이므로 w ← w + 0 입니다. 퍼셉트론은 틀린 예시에서만 배웁니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 2 &nbsp;편향 b를 바꾸면 결정 경계 직선은 어떻게 되나요?</p><ol><li class="ok">① 기울기는 그대로, 위치만 평행 이동 ✔ 정답</li><li class="">② 위치는 그대로, 기울기만 회전</li><li class="">③ 직선이 곡선으로 바뀐다</li></ol><p><span class="tagx">해설</span>b는 직선의 위치를 평행하게 옮깁니다. 직선이 기울어진 방향은 w가 정합니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 3 &nbsp;퍼셉트론 하나로 절대 풀 수 없는 문제는?</p><ol><li class="">① 직선으로 나뉘는 두 무리</li><li class="ok">② XOR처럼 직선으로 나눌 수 없는 문제 ✔ 정답</li><li class="">③ 입력이 3개 이상인 문제</li></ol><p><span class="tagx">해설</span>직선 하나로는 대각선끼리 같은 클래스인 XOR을 가를 수 없습니다. 층을 쌓고 꺾이는 활성화 함수를 넣어야 풀립니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 4 &nbsp;w = (1, 1), b = −5인 퍼셉트론에 링크 2개, 느낌표 2개인 메일을 넣으면?</p><ol><li class="">① 스팸 (ŷ = 1)</li><li class="ok">② 정상 (ŷ = 0) ✔ 정답</li><li class="">③ 알 수 없다</li></ol><p><span class="tagx">해설</span>z = 1×2 + 1×2 − 5 = −1 &lt; 0 이므로 ŷ = 0, 정상입니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 5 &nbsp;어려운 세트에서 퍼셉트론의 시험 정확도가 기준선(0.667)보다 낮게 나왔습니다. 가장 알맞은 해석은?</p><ol><li class="ok">① 두 무리가 겹쳐 직선 하나로 나뉘지 않아 수렴하지 못했고, 멈춘 자리의 직선이 우연히 나빴다 ✔ 정답</li><li class="">② 코드에 버그가 있다. 퍼셉트론은 늘 기준선보다 잘한다</li><li class="">③ 에포크를 1,000번으로 늘리면 반드시 1.0이 된다</li></ol><p><span class="tagx">해설</span>겹친 데이터에서는 직선이 한 메일을 맞히려 돌 때마다 다른 메일이 틀립니다. 수렴하지 못하고, 마지막 직선은 정해 둔 횟수가 끝난 자리일 뿐입니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 6 &nbsp;쉬운 세트의 기준선이 0.714라는 말의 뜻은?</p><ol><li class="ok">① 모든 메일을 정상이라고만 답해도 시험 메일의 71.4%를 맞힌다 ✔ 정답</li><li class="">② 퍼셉트론이 71.4%를 맞혔다</li><li class="">③ 스팸이 71.4%다</li></ol><p><span class="tagx">해설</span>시험 메일 105통 가운데 75통이 정상이므로, 정상으로만 답해도 75/105 = 0.714입니다. 정확도는 이 숫자와 함께 읽어야 합니다.</p><p><span class="tagx">배점</span>2점</p></div><h3 style="margin:22px 0 8px;font-size:18px">강의 멘트 (그대로 읽어도 되는 네 줄)</h3><p style="margin:10px 0 4px;font-weight:700">퍼셉트론 학습 (01-5 움직이는 다이어그램)</p><table class="ment"><tr><th>도입</th><td>오늘은 메일 점수표를 사람이 아니라 기계가 스스로 고치는 장면을 봅니다.</td></tr><tr><th>시연</th><td>재생하기 전에 물어봅니다. 틀린 메일을 만나면 직선은 그 메일 쪽으로 돌까요, 반대쪽으로 돌까요?</td></tr><tr><th>질문</th><td>✕ 표시가 하나 남았을 때 멈추고: 이 메일을 맞히려면 w를 더할까요 뺄까요? 화면의 (y − ŷ) 값으로 확인해 보세요.</td></tr><tr><th>정리</th><td>퍼셉트론은 틀린 예시에서만 배웁니다. 흔한 오해: 많이 돌리면 언제나 다 맞힌다 → 직선으로 나뉠 때만입니다.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">메일로 보면 (02)</p><table class="ment"><tr><th>도입</th><td>같은 퍼셉트론을 쉬운 세트와 어려운 세트에 맡깁니다.</td></tr><tr><th>시연</th><td>어려운 세트로 바꾸기 전에: 이번에도 수렴할지 손을 들어 보게 합니다.</td></tr><tr><th>질문</th><td>마지막 장에서 멈추고: 시험 막대가 세로선(기준선)보다 왼쪽입니다. 버그일까요?</td></tr><tr><th>정리</th><td>겹친 데이터에서 퍼셉트론은 수렴하지 못하고, 마지막 직선은 정답이 아니라 멈춘 자리입니다.</td></tr></table></div></section><section class="ans" id="a2"><div class="wrap"><div class="part-head"><div class="part-no">2</div><h2>활성화 함수 — 꺾여야 쌓을 수 있다</h2><p><a class="back" href="2_activation.html#author-sec">2편 페이지의 교육자 안내로 돌아가기</a></p></div><p>확인 문제 5개 · 문제당 2점 (총 10점). 정답 + 이유 한 문장 = 2점, 정답만 = 1점, 오답이어도 핵심 이유를 말하면 1점.</p><div class="qa"><p class="qn">문제 1 &nbsp;은닉층의 활성화 함수를 모두 f(z) = z로 바꾸면?</p><ol><li class="">① 더 복잡한 곡선을 배운다</li><li class="ok">② 층을 쌓아도 직선 하나와 같아진다 ✔ 정답</li><li class="">③ 학습이 불가능해진다</li></ol><p><span class="tagx">해설</span>W₂(W₁x) = (W₂W₁)x이므로, 꺾임이 없으면 층을 몇 개 쌓아도 하나의 선형 함수와 같습니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 2 &nbsp;정상·스팸·광고 세 클래스의 확률을 내야 하는 출력층에 알맞은 것은?</p><ol><li class="">① ReLU</li><li class="">② 계단 함수</li><li class="ok">③ 소프트맥스 ✔ 정답</li></ol><p><span class="tagx">해설</span>소프트맥스는 모든 클래스의 출력을 더하면 1이 되는 확률로 바꿔 줍니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 3 &nbsp;은닉층에 시그모이드를 여러 겹 쓰면 앞쪽 층이 잘 배우지 못하는 이유는?</p><ol><li class="ok">① 기울기가 최대 0.25라, 층을 지날수록 곱해져 작아진다 ✔ 정답</li><li class="">② 출력이 음수가 될 수 있어서</li><li class="">③ 계산이 너무 느려서</li></ol><p><span class="tagx">해설</span>기울기를 층마다 거꾸로 전할 때 0.25 이하의 수가 계속 곱해져 0에 가까워집니다. 이것이 기울기 소실이고, 은닉층에 ReLU를 주로 쓰는 이유입니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 4 &nbsp;f(z) = z로 바꾸면 입력 (0, 0)의 출력이 2가 되어 스팸으로 틀립니다. 왜 그런가요?</p><ol><li class="ok">① 꺾임이 없으면 h₁ − 2h₂ = −(x₁ + x₂) + 2로, 결국 직선 하나와 같아지기 때문 ✔ 정답</li><li class="">② 가중치를 잘못 정했기 때문. 선형으로도 다른 가중치면 풀 수 있다</li><li class="">③ 은닉 뉴런이 두 개뿐이라서</li></ol><p><span class="tagx">해설</span>선형 층을 겹치면 식을 정리했을 때 다시 일차식(직선) 하나가 됩니다. XOR은 직선으로 나눌 수 없으므로, 꺾는 활성화 함수가 반드시 필요합니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 5 &nbsp;어려운 세트에서 활성화 함수를 ReLU로 바꿔도 시험 정확도가 기준선 근처입니다. 가장 알맞은 이유는?</p><ol><li class="ok">① 두 종류의 메일이 링크·느낌표 평면의 같은 자리에 섞여 있어, 경계 모양을 바꿔도 가를 수 없다 ✔ 정답</li><li class="">② ReLU가 음수를 0으로 잘라 정보를 잃었다</li><li class="">③ 은닉 뉴런이 8개로 너무 많다</li></ol><p><span class="tagx">해설</span>꺾임은 직선으로 안 되는 모양(XOR)을 풀지만, 같은 입력에 다른 정답이 붙은 겹침은 풀지 못합니다. 새 특성(4편의 글자 수)이 필요합니다.</p><p><span class="tagx">배점</span>2점</p></div><h3 style="margin:22px 0 8px;font-size:18px">강의 멘트 (그대로 읽어도 되는 네 줄)</h3><p style="margin:10px 0 4px;font-weight:700">XOR 풀기 (02)</p><table class="ment"><tr><th>도입</th><td>1편에서 실패한 XOR을 은닉 뉴런 두 개로 다시 풉니다.</td></tr><tr><th>시연</th><td>‘꺾지 않기’를 누르기 전에: 네 점이 은닉 평면에서 어떻게 놓일지 예상해 보게 합니다.</td></tr><tr><th>질문</th><td>선형일 때 은닉 평면을 보며: 네 점이 한 줄에 섰습니다. 어떤 직선이 정상·스팸·정상을 가를 수 있나요?</td></tr><tr><th>정리</th><td>층을 쌓는 이유는 평면을 접기 위해서이고, 접으려면 꺾임이 필요합니다. 흔한 오해: 뉴런을 늘리면 선형도 풀린다.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">메일로 보면 (03)</p><table class="ment"><tr><th>도입</th><td>이번엔 활성화 함수만 바꿔 끼워 실제 메일을 학습합니다.</td></tr><tr><th>시연</th><td>ReLU를 누르기 전에: 선형보다 점수가 오를지 예측하게 합니다.</td></tr><tr><th>질문</th><td>학습이 끝난 장에서: 경계는 휘었는데 시험 막대는 그대로입니다. 무엇이 모자란가요?</td></tr><tr><th>정리</th><td>꺾임은 모양의 문제를 풀고, 겹침은 정보(특성)가 있어야 풀립니다. 다음은 4편의 글자 수.</td></tr></table></div></section><section class="ans" id="a3"><div class="wrap"><div class="part-head"><div class="part-no">3</div><h2>비용 함수와 경사하강법 — 틀린 정도를 재고 내려간다</h2><p><a class="back" href="3_cost_function.html#author-sec">3편 페이지의 교육자 안내로 돌아가기</a></p></div><p>확인 문제 6개 · 문제당 2점 (총 12점). 정답 + 이유 한 문장 = 2점, 정답만 = 1점, 오답이어도 핵심 이유를 말하면 1점.</p><div class="qa"><p class="qn">문제 1 &nbsp;정답이 스팸인데 모델이 스팸 확률을 0.01이라고 했습니다. 교차엔트로피 손실은?</p><ol><li class="ok">① 약 4.6 (매우 큼) ✔ 정답</li><li class="">② 약 0.01 (매우 작음)</li><li class="">③ 정확히 1</li></ol><p><span class="tagx">해설</span>−log 0.01 ≈ 4.6으로, 확신에 차서 틀린 예측에 매우 큰 벌점을 줍니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 2 &nbsp;지금 위치에서 기울기 ∂J/∂w가 +3입니다. 경사하강법은 w를?</p><ol><li class="">① 늘린다</li><li class="">② 그대로 둔다</li><li class="ok">③ 줄인다 ✔ 정답</li></ol><p><span class="tagx">해설</span>기울기가 양수라는 것은 w를 늘리면 J도 늘어난다는 뜻이므로, w를 줄여야 J가 내려갑니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 3 &nbsp;학습 중에 비용 J가 줄지 않고 점점 커집니다. 가장 먼저 의심할 것은?</p><ol><li class="">① 학습률이 너무 작다</li><li class="ok">② 학습률이 너무 크다 ✔ 정답</li><li class="">③ 데이터가 너무 많다</li></ol><p><span class="tagx">해설</span>보폭이 너무 크면 골짜기 바닥을 건너뛰어 반대편 더 높은 곳에 떨어지고, 이것이 반복되며 J가 커집니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 4 &nbsp;소프트맥스 출력이 (정상 0.66, 스팸 0.24, 광고 0.10)이고 정답이 스팸입니다. 교차엔트로피 손실은?</p><ol><li class="ok">① −log 0.24 ≈ 1.43 ✔ 정답</li><li class="">② −log 0.66 ≈ 0.42</li><li class="">③ 세 확률의 −log를 모두 더한 값</li></ol><p><span class="tagx">해설</span>다중 교차엔트로피는 정답 클래스에 준 확률만 봅니다: −log 0.24 ≈ 1.43.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 5 &nbsp;미니배치 32의 비용 곡선이 전체 배치보다 들쭉날쭉한 이유는?</p><ol><li class="ok">① 묶음마다 다른 메일 32통으로 기울기를 계산해, 방향이 조금씩 흔들리기 때문 ✔ 정답</li><li class="">② 학습률이 자동으로 커지기 때문</li><li class="">③ 미니배치는 비용 함수를 쓰지 않기 때문</li></ol><p><span class="tagx">해설</span>32통의 평균 기울기는 전체 평균 기울기의 '표본'이라 조금씩 다릅니다. 그래서 흔들리지만, 한 에포크에 더 많이 고쳐 더 빨리 내려갑니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 6 &nbsp;어려운 세트에서 학습 비용이 0.5 근처에서 더 내려가지 않습니다. 가장 알맞은 해석은?</p><ol><li class="ok">① 경사하강법은 골짜기 바닥에 도착했지만, 직선 하나로는 이 데이터의 바닥이 높다 ✔ 정답</li><li class="">② 학습률이 너무 작아서 아직 내려가는 중이다</li><li class="">③ 교차엔트로피가 잘못 계산되었다</li></ol><p><span class="tagx">해설</span>비용 함수의 최솟값은 모델과 데이터가 함께 정합니다. 섞여 있는 메일은 어떤 직선으로도 확신 있게 맞힐 수 없으므로 바닥이 높습니다.</p><p><span class="tagx">배점</span>2점</p></div><h3 style="margin:22px 0 8px;font-size:18px">강의 멘트 (그대로 읽어도 되는 네 줄)</h3><p style="margin:10px 0 4px;font-weight:700">경사하강법 애니메이션 (01-4)</p><table class="ment"><tr><th>도입</th><td>비용의 골짜기를 공이 내려가는 장면입니다.</td></tr><tr><th>시연</th><td>η = 1.05를 누르기 전에: 보폭을 조금만 키웠는데 무슨 일이 생길지 예상하게 합니다.</td></tr><tr><th>질문</th><td>발산 장면에서 멈추고: 비용이 매 걸음 커졌나요? 화면의 J 값을 읽어 보세요.</td></tr><tr><th>정리</th><td>학습률은 보폭이고, 너무 크면 바닥을 건너뛰어 발산합니다. 흔한 오해: 크면 무조건 빠르다.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">메일로 보면 (02)</p><table class="ment"><tr><th>도입</th><td>1편의 퍼셉트론에서 계단을 시그모이드로 바꾸고, 비용 곡선을 함께 봅니다.</td></tr><tr><th>시연</th><td>미니배치를 누르기 전에: 곡선이 더 매끈해질지, 더 들쭉날쭉해질지 묻습니다.</td></tr><tr><th>질문</th><td>어려운 세트 끝에서: 곡선이 평평합니다. 학습률을 키우면 더 내려갈까요?</td></tr><tr><th>정리</th><td>평평한 곡선은 바닥에 도착했다는 뜻이고, 그 바닥의 높이는 데이터가 정합니다.</td></tr></table></div></section><section class="ans" id="a4"><div class="wrap"><div class="part-head"><div class="part-no">4</div><h2>정규화 — 숫자의 눈금을 맞춘다</h2><p><a class="back" href="4_normalization.html#author-sec">4편 페이지의 교육자 안내로 돌아가기</a></p></div><p>확인 문제 6개 · 문제당 2점 (총 12점). 정답 + 이유 한 문장 = 2점, 정답만 = 1점, 오답이어도 핵심 이유를 말하면 1점.</p><div class="qa"><p class="qn">문제 1 &nbsp;글자 수의 평균이 2,000일 때, 글자 수 2,000인 메일을 표준화하면?</p><ol><li class="ok">① 0 ✔ 정답</li><li class="">② 1</li><li class="">③ 2,000</li></ol><p><span class="tagx">해설</span>(x − μ)/σ = (2,000 − 2,000)/σ = 0. 평균과 같은 값은 표준화하면 0이 됩니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 2 &nbsp;배치 크기가 1이어도 학습과 추론에서 같은 규칙으로 동작하는 방법은?</p><ol><li class="">① BatchNorm</li><li class="ok">② LayerNorm ✔ 정답</li><li class="">③ 둘 다 아니다</li></ol><p><span class="tagx">해설</span>LayerNorm은 한 토큰 안의 특성끼리만 평균을 내므로 배치 크기와 상관없이 같은 규칙으로 동작합니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 3 &nbsp;RMSNorm이 LayerNorm과 다른 점은?</p><ol><li class="">① 배치의 다른 예시를 함께 본다</li><li class="">② 채널을 그룹으로 나눈다</li><li class="ok">③ 평균을 빼지 않는다 ✔ 정답</li></ol><p><span class="tagx">해설</span>RMSNorm은 평균을 빼지 않고 √mean(x²)으로만 나누며, 보통 β 없이 γ만 학습합니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 4 &nbsp;표준화 없이 글자 수를 넣고 η = 1로 학습하면 비용이 치솟습니다. 가장 알맞은 이유는?</p><ol><li class="ok">① 글자 수가 수천이라 점수 z가 매우 커지고, 시그모이드가 0이나 1에 붙은 채 확신에 차서 틀리기 때문 ✔ 정답</li><li class="">② 글자 수는 스팸과 아무 관계가 없기 때문</li><li class="">③ η = 1은 어떤 데이터에서도 너무 크기 때문</li></ol><p><span class="tagx">해설</span>기울기 (p − y)x에 x = 수천이 곱해져 글자 수 가중치가 한 걸음에 크게 튑니다. 표준화하면 모든 특성이 1 안팎이라 같은 η로 고르게 움직입니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 5 &nbsp;표준화의 μ, σ를 학습·시험 데이터를 모두 합쳐 구했습니다. 무엇이 문제인가요?</p><ol><li class="ok">① 시험 데이터의 정보가 학습에 새어 들어가, 성적이 실제보다 좋게 나올 수 있다(데이터 누수) ✔ 정답</li><li class="">② 계산이 느려진다</li><li class="">③ 문제없다. 데이터가 많을수록 μ, σ가 정확하다</li></ol><p><span class="tagx">해설</span>μ, σ는 학습 데이터로만 구하고 시험·새 데이터에는 그 값을 그대로 씁니다. Pipeline으로 묶으면 이 순서가 저절로 지켜집니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 6 &nbsp;λ를 2까지 키웠더니 시험 정확도가 기준선 근처로 떨어졌습니다. 왜 그런가요?</p><ol><li class="ok">① 벌점이 너무 세서 쓸모 있는 가중치까지 0 쪽으로 눌렸기 때문 ✔ 정답</li><li class="">② 규제가 과대적합을 일으켰기 때문</li><li class="">③ 표준화가 꺼졌기 때문</li></ol><p><span class="tagx">해설</span>가중치가 모두 작아지면 점수 z가 0 근처에 몰려, 모델이 거의 모든 메일에 비슷한 확률을 말합니다. λ는 검증 데이터로 '적당히'를 찾습니다.</p><p><span class="tagx">배점</span>2점</p></div><h3 style="margin:22px 0 8px;font-size:18px">강의 멘트 (그대로 읽어도 되는 네 줄)</h3><p style="margin:10px 0 4px;font-weight:700">표준화 전후 (02)</p><table class="ment"><tr><th>도입</th><td>2·3편에서 넘지 못한 어려운 세트에 글자 수를 더합니다.</td></tr><tr><th>시연</th><td>η = 1에서 결과를 보기 전에: 정보가 늘었으니 원래 숫자 쪽도 좋아질지 묻습니다.</td></tr><tr><th>질문</th><td>원래 숫자의 비용이 치솟은 화면에서: 글자 수 가중치가 왜 이렇게 큰가요? 기울기 (p − y)x를 떠올려 보세요.</td></tr><tr><th>정리</th><td>정보와 눈금은 따로 필요합니다. 흔한 오해: 표준화는 정확도를 올리는 기술이다 → 학습이 제대로 되게 하는 준비입니다.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">규제 (03)</p><table class="ment"><tr><th>도입</th><td>비슷한 이름의 다른 기법, 규제를 걸어 봅니다.</td></tr><tr><th>시연</th><td>λ를 2까지 밀기 전에: 벌점이 셀수록 점수가 오를지 내릴지 묻습니다.</td></tr><tr><th>질문</th><td>λ = 2에서: 가중치 막대가 모두 짧아졌습니다. 시험 막대는 기준선과 비교해 어디인가요?</td></tr><tr><th>정리</th><td>규제는 과대적합의 브레이크이고, 너무 세면 덜 배웁니다. λ는 검증으로 '적당히'를 찾습니다.</td></tr></table></div></section><section class="ans" id="a5"><div class="wrap"><div class="part-head"><div class="part-no">5</div><h2>실험실 — 다이얼을 하나만 바꿔 학습시키기</h2><p><a class="back" href="5_lab.html#author-sec">5편 페이지의 교육자 안내로 돌아가기</a></p></div><p>이 편은 확인 문제 대신 <b>실험 과제</b>로 평가합니다. 아래 예시 결과의 숫자는 정식 코드(Python 3 · scikit-learn 1.9)로 실제 실행한 값이며, 브라우저 실험실의 숫자는 교육용 구현이라 조금 다를 수 있습니다. 학생의 숫자가 달라도 <b>방향</b>이 같으면 맞습니다.</p><div class="qa"><p class="qn">기본 과제 1 · 정보를 더하면</p><p><span class="tagx">과제</span>어려운 세트, 기본 다이얼(ReLU · 표준화 켬 · η 0.1 · 은닉 8 · 200 에포크)에서 특성 2개 → 3개, 시드 0~2.</p><p><span class="tagx">예시 결과</span>정식 코드 f5_lab.py(시드 5개): 특성 2개 0.647 ± 0.019 → 특성 3개 0.970 ± 0.012, 기준선 0.667. 초보용 e5(시드 0): 0.650 → 0.983.</p><p><span class="tagx">예시 해석</span>링크·느낌표만으로는 기준선과 비슷하거나 낮다. 뉴스레터와 피싱 스팸이 이 두 특성에서 같은 자리에 섞여 있기 때문이다. 글자 수를 더하면 두 무리가 갈라져 시험 정확도가 크게 오른다. 흔들림(±)보다 차이가 훨씬 크므로 우연이라 보기 어렵다.</p><p><span class="tagx">채점 포인트</span>① 특성 하나만 바꿨는가 ② 기준선과 비교해 해석했는가 ③ 시드 여러 개의 흔들림을 보고 판단했는가</p></div><div class="qa"><p class="qn">기본 과제 2 · 눈금을 맞추지 않으면</p><p><span class="tagx">과제</span>과제 1의 특성 3개 설정에서 표준화만 끈다.</p><p><span class="tagx">예시 결과</span>정식 코드: 0.970 ± 0.012 → 0.667 ± 0.000 (기준선 0.667과 같음). 브라우저에서는 비용이 크게 출렁이거나 무한대로 멈출 수 있다.</p><p><span class="tagx">예시 해석</span>정확도가 기준선과 정확히 같다는 것은 모든 시험 메일을 한쪽(정상)으로만 답했다는 뜻이다. 글자 수(수천)가 점수를 지배해 시그모이드가 0이나 1에 붙고, 기울기가 링크·느낌표 쪽으로 거의 가지 않는다. 정보는 있었지만 눈금 때문에 쓰지 못했다.</p><p><span class="tagx">채점 포인트</span>① 표준화 하나만 바꿨는가 ② '기준선과 같다'의 뜻(한쪽으로만 답함)을 읽었는가 ③ 4편의 원리(큰 숫자 × 같은 학습률)로 설명했는가</p></div><div class="qa"><p class="qn">도전 과제 1 · 꺾임이 필요한 데이터</p><p><span class="tagx">과제</span>직접 만들기에서 '스팸을 정상 메일 양쪽 두 무리로'를 켜고(예: 정상 링크 5·느낌표 5, 스팸 링크 9·느낌표 9, 퍼짐 1), 특성 2개에서 선형 vs ReLU.</p><p><span class="tagx">예시 결과</span>브라우저 예시(시드 0): 선형은 기준선 근처, ReLU는 기준선보다 확실히 높다. 숫자는 설정마다 다르므로 학생의 기록표를 본다.</p><p><span class="tagx">예시 해석</span>스팸이 정상 메일의 양쪽에 있으면 직선 하나로는 한쪽 스팸만 떼어 낼 수 있다. ReLU 은닉층은 평면을 접어 양쪽을 한데 모으므로 띠 모양 경계를 만든다. 2편 XOR과 같은 원리다.</p><p><span class="tagx">채점 포인트</span>① 분포 그림을 함께 제시했는가 ② 활성화만 바꿨는가 ③ XOR과 연결해 설명했는가</p></div><div class="qa"><p class="qn">도전 과제 2 · 학습률과 에포크</p><p><span class="tagx">과제</span>쉬운 세트, 에포크 50에서 η 0.001 · 0.01 · 0.1 · 1.</p><p><span class="tagx">예시 결과</span>정식 코드(200 에포크): η 0.1 → 1.000, η 0.001 → 0.977 ± 0.019. 에포크 50이면 η 0.001은 비용이 거의 줄지 않아 기준선 근처에 머물 수 있다.</p><p><span class="tagx">예시 해석</span>너무 작은 η는 곡선이 거의 평평하게 천천히 내려가 정해진 에포크 안에 바닥에 닿지 못한다. 너무 큰 η는 처음에 출렁이지만, 이 쉬운 세트에서는 대개 결국 내려간다. '느린 것'과 '발산'을 비용 곡선 모양으로 구분한다.</p><p><span class="tagx">채점 포인트</span>① η 하나만 바꿨는가 ② 비용 곡선의 모양을 비교했는가 ③ 에포크가 결과에 주는 영향을 언급했는가</p></div><h3 style="margin:22px 0 8px;font-size:18px">강의 멘트 (그대로 읽어도 되는 네 줄)</h3><p style="margin:10px 0 4px;font-weight:700">실험실 전체</p><table class="ment"><tr><th>도입</th><td>이제 다이얼을 직접 돌립니다. 규칙은 하나, 한 번에 하나만 바꾸기.</td></tr><tr><th>시연</th><td>학습하기를 누르기 전에: 기록표 첫 줄의 시험 정확도를 미리 적어 보게 합니다.</td></tr><tr><th>질문</th><td>기록표에 '바꾼 다이얼 3개'가 나온 학생에게: 정확도가 오른 이유를 하나로 말할 수 있나요?</td></tr><tr><th>정리</th><td>결과는 기준선과 시드 흔들림과 함께 읽습니다. 흔한 오해: 한 번 돌린 0.02 차이가 우열이다.</td></tr></table></div></section><section class="ans" id="a6"><div class="wrap"><div class="part-head"><div class="part-no">6</div><h2>선을 긋는 모델과 확률을 말하는 모델 — 영역·확률·숫자</h2><p><a class="back" href="6_regions_probability.html#author-sec">6편 페이지의 교육자 안내로 돌아가기</a></p></div><p>확인 문제 4개 · 문제당 2점 (총 8점). 정답 + 이유 한 문장 = 2점, 정답만 = 1점, 오답이어도 핵심 이유를 말하면 1점.</p><div class="qa"><p class="qn">문제 1 &nbsp;어려운 세트에서 SVM과 로지스틱의 시험 정확도가 같았습니다. 그래도 로지스틱의 교차엔트로피만 유한한 이유는?</p><ol><li class="ok">① 로지스틱은 섞인 곳에서 “반반쯤”이라고 말해, 틀려도 놀람이 크지 않기 때문 ✔ 정답</li><li class="">② 로지스틱이 더 많이 맞혔기 때문</li><li class="">③ SVM은 교차엔트로피를 계산하는 법이 따로 있어서</li></ol><p><span class="tagx">해설</span>교차엔트로피는 정답에 준 확률이 낮을수록 커집니다. 영역형은 틀린 메일에 확률 0을 준 셈이라 −log 0 = ∞가 됩니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 2 &nbsp;동전을 던지기 전, 앞면 확률이 0.5일 때와 0.99일 때 엔트로피는?</p><ol><li class="ok">① 0.5일 때가 더 크다 (가장 망설인다) ✔ 정답</li><li class="">② 0.99일 때가 더 크다</li><li class="">③ 둘이 같다</li></ol><p><span class="tagx">해설</span>엔트로피는 '보기 전의 망설임'입니다. 반반일 때 최대(0.693)이고, 한쪽으로 기울수록 0에 가까워집니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 3 &nbsp;커널 SVC가 섬 모양 구역을 만들 수 있게 된 뒤에도 '영역형'인 이유는?</p><ol><li class="ok">① 구역의 모양만 자유로워졌을 뿐, 답은 여전히 “안이냐 밖이냐”이기 때문 ✔ 정답</li><li class="">② 커널을 쓰면 자동으로 확률을 내기 때문</li><li class="">③ γ가 작을 때만 영역형이다</li></ol><p><span class="tagx">해설</span>영역형과 확률형은 경계의 모양이 아니라 '확실한 정도를 말하느냐'로 나뉩니다.</p><p><span class="tagx">배점</span>2점</p></div><div class="qa"><p class="qn">문제 4 &nbsp;선형회귀가 “신고 4.2건 ± 2.7건”이라고 예측했습니다. ± 2.7의 뜻에 가장 가까운 것은?</p><ol><li class="ok">① 예측을 중심으로 한 종 모양 분포의 폭. 실제 값의 약 95%가 이 범위에 든다 ✔ 정답</li><li class="">② 모델이 2.7번 틀렸다</li><li class="">③ 스팸일 확률이 27%다</li></ol><p><span class="tagx">해설</span>선형회귀를 분포로 보면, 직선 위의 값이 평균이고 잔차의 표준편차 σ가 종의 폭입니다. μ ± 1.96σ에 약 95%가 들어갑니다.</p><p><span class="tagx">배점</span>2점</p></div><h3 style="margin:22px 0 8px;font-size:18px">강의 가이드라인</h3><p>이 편은 애니메이션형이라, 확인 문제와 함께 강의 가이드라인을 둡니다.</p><div class="qa"><p class="qn">1. 움직임을 학습 그 자체로 오해하지 않게</p><ul style="margin:0;padding-left:20px"><li>한 장은 에포크(걸음) 하나가 끝난 실제 상태이며, 장 사이를 섞어 잇지 않았다고 먼저 알린다.</li><li>커널 SVC는 브라우저에서 무작위 푸리에 특성으로 흉내 낸 근사임을 밝힌다. 정식 결과는 f6의 SVC 숫자를 쓴다.</li></ul></div><div class="qa"><p class="qn">2. 점수는 기준선과 함께</p><ul style="margin:0;padding-left:20px"><li>분류는 '더 많은 쪽으로만 답하기', 회귀는 '평균으로만 답하기'가 기준선이다.</li><li>어려운 세트에서 0.683 vs 0.667처럼 작은 차이를 우열로 말하지 않는다. 시드·나누기에 따라 뒤집힌다.</li></ul></div><div class="qa"><p class="qn">3. 모델별로 흔한 오해</p><ul style="margin:0;padding-left:20px"><li>'SVM은 확률을 낸다' → 아니다. 점수(거리)만 내고, 확률은 Platt 같은 덧붙이기 단계가 만든다.</li><li>'커널을 쓰면 확률형이 된다' → 구역의 모양만 바뀐다.</li><li>'선형회귀로 0/1을 맞히면 분류가 된다' → 예측이 0~1을 벗어나고, 먼 데이터에 직선이 끌려간다. 분류는 로지스틱으로.</li></ul></div><div class="qa"><p class="qn">4. 엔트로피를 쉽게</p><ul style="margin:0;padding-left:20px"><li>엔트로피 = 보기 전의 망설임, 교차엔트로피 = 본 뒤의 놀람. 두 낱말을 끝까지 같은 말로 부른다.</li><li>표(0.5 · 0.9 · 0.99 · 1)를 칠판에 쓰고 학생이 −log 값을 계산기로 채우게 하면 이해가 빠르다.</li></ul></div><div class="qa"><p class="qn">5. 그림의 한계</p><ul style="margin:0;padding-left:20px"><li>특성 두 개라 그릴 수 있었다. 실제 필터는 수천 개 특성을 쓴다.</li><li>데이터가 없는 바깥 영역의 색은 모델의 추측(외삽)이다. 특히 γ가 큰 커널에서 주의.</li></ul></div><div class="qa"><p class="qn">6. 수업 운영 팁</p><ul style="margin:0;padding-left:20px"><li>진행 예시(50분): 01 비유 10분 → 02 동시 학습 10분 → 04 엔트로피 지도 15분 → 05 동전과 종 10분 → 정리 5분.</li><li>03 커널은 2편 XOR을 다시 보여 준 뒤 들어가면 자연스럽다.</li><li>지도를 눌러야 하는 04는 PC나 태블릿을 권장한다.</li></ul></div><h3 style="margin:22px 0 8px;font-size:18px">강의 멘트 (그대로 읽어도 되는 네 줄)</h3><p style="margin:10px 0 4px;font-weight:700">세 모델 동시 학습 (02)</p><table class="ment"><tr><th>도입</th><td>오늘은 1편부터 만난 모델들을 '어떻게 대답하느냐'로 다시 나눕니다.</td></tr><tr><th>시연</th><td>재생 전에: 쉬운 세트에서 세 선이 모두 같은 자리에 설지 예측하게 합니다.</td></tr><tr><th>질문</th><td>끝 장에서: SVM의 선은 왜 퍼셉트론보다 두 무리의 한가운데에 있나요? 테두리 친 메일을 세어 보세요.</td></tr><tr><th>정리</th><td>같은 직선 z를 쓰지만 자리와 대답이 다릅니다. 흔한 오해: SVM이 늘 더 정확하다 → 자리가 더 '여유 있을' 뿐입니다.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">엔트로피 지도 (04)</p><table class="ment"><tr><th>도입</th><td>모델이 '잘 모르겠다'고 하는 곳을 지도에 칠합니다.</td></tr><tr><th>시연</th><td>SVM 그대로를 누르기 전에: 엔트로피 지도가 어떻게 보일지 예측하게 합니다(답: 전부 0).</td></tr><tr><th>질문</th><td>어려운 세트 로지스틱에서 경계선 위를 눌러 보게 하고: 엔트로피가 얼마인가요? 왜 0.693에 가까운가요?</td></tr><tr><th>정리</th><td>엔트로피는 망설임, 교차엔트로피는 놀람. 정확도가 같아도 '알맞게 확신하는' 모델이 따로 있습니다.</td></tr></table><p style="margin:10px 0 4px;font-weight:700">동전과 종 (05)</p><table class="ment"><tr><th>도입</th><td>답이 숫자인 문제, 스팸 신고 수를 예측합니다.</td></tr><tr><th>시연</th><td>슬라이더를 0에서 12로 옮기기 전에: 동전과 종이 각각 어떻게 변할지 묻습니다.</td></tr><tr><th>질문</th><td>기준선 RMSE와 모델 RMSE 막대를 보며: 회귀의 기준선은 왜 '평균으로만 답하기'일까요?</td></tr><tr><th>정리</th><td>분류는 동전, 회귀는 종 — 둘 다 확률분포를 만들어 정답에 덜 놀라게 학습합니다.</td></tr></table></div></section>
+<footer><div class="wrap"><p><b>신경망은 틀리면서 배운다 · 교육자용 정답</b> — 글 · 안상선 ((주)M-Robo 대표)</p><p style="margin-top:10px"><a class="cc" href="https://creativecommons.org/licenses/by-nc/4.0/deed.ko" rel="license">CC BY-NC 4.0</a></p></div></footer>
+<script>
+(function(){
+/* nav */
+const links=[...document.querySelectorAll('nav.top a[href^="#"]:not(.brand)')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+function mark(id){links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);if(on){a.setAttribute('aria-current','true');const w=a.parentElement;const l=a.offsetLeft-w.clientWidth/2+a.offsetWidth/2;w.scrollTo({left:l})}else a.removeAttribute('aria-current')})}
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)mark(e.target.id)})},{rootMargin:'-45% 0px -50% 0px'});secs.forEach(x=>io.observe(x))}
+})();
+</script>
+</body></html>
